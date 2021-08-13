@@ -46,14 +46,71 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Dgv.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Dgv.Designer.cs">
+      <DependentUpon>Dgv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MAntMedico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MAntMedico.Designer.cs">
+      <DependentUpon>MAntMedico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MantPAcientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MantPAcientes.Designer.cs">
+      <DependentUpon>MantPAcientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MantPrueva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MantPrueva.Designer.cs">
+      <DependentUpon>MantPrueva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MantUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MantUsuario.Designer.cs">
+      <DependentUpon>MantUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuHome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuHome.Designer.cs">
+      <DependentUpon>MenuHome.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Dgv.resx">
+      <DependentUpon>Dgv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MAntMedico.resx">
+      <DependentUpon>MAntMedico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantPAcientes.resx">
+      <DependentUpon>MantPAcientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantPrueva.resx">
+      <DependentUpon>MantPrueva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantUsuario.resx">
+      <DependentUpon>MantUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuHome.resx">
+      <DependentUpon>MenuHome.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

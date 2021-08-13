@@ -16,7 +16,7 @@ namespace GestorDePacientes
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login());
+            Application.Run(Login.Instancia);
         }
     }
 }
