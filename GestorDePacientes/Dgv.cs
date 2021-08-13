@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
+using BusinesLayer;
 
 namespace GestorDePacientes
 {
@@ -16,9 +18,18 @@ namespace GestorDePacientes
         public static Dgv Instancia { get; } = new Dgv();
         #endregion
 
+        private GestorPacientesServices services;
+
         public Dgv()
         {
             InitializeComponent();
+
+            string connectionString = ConfigurationManager.ConnectionStrings["Default"].ToString();
+
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            services = new GestorPacientesServices(connection);
+
         }
 
         #region Eventos 

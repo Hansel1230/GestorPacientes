@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
+using BusinesLayer;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace GestorDePacientes
 {
@@ -10,9 +13,19 @@ namespace GestorDePacientes
         #endregion
         bool isValid;
 
+        private GestorPacientesServices services;
+       
+
         private Login()
         {
             InitializeComponent();
+
+            string connectionString = ConfigurationManager.ConnectionStrings["Default"].ToString();
+
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            services = new GestorPacientesServices(connection);
+
         }
 
         #region Eventos 
@@ -39,7 +52,23 @@ namespace GestorDePacientes
                 MessageBox.Show("Debe ingresar una contraseña");
                 isValid = false;
             }
-
+            else
+            {
+                try
+                {
+                    services.validLogin(TxtUsuario.Text, TxtContrasena.Text);
+                    if (services.loginReader == false)
+                    {
+                        isValid = false;
+                        MessageBox.Show("Credenciales Invalidas", "Error");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                
+            }
             if (isValid)
             {
                 MenuHome.Instancia.Show();
@@ -64,7 +93,7 @@ namespace GestorDePacientes
             }
         }
 
-        //Mantenimiento Txt.Usuario
+        //Mantenimiento Txt.Contraseña
         private void TxtContrasena_Click(object sender, EventArgs e)
         {
             if (TxtContrasena.Text== "Ingrese Contraseña")
@@ -80,6 +109,7 @@ namespace GestorDePacientes
                 TxtContrasena.Text = "Ingrese Contraseña";
             }
         }
+
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Environment.Exit(1);
@@ -93,12 +123,6 @@ namespace GestorDePacientes
             TxtUsuario.Text = "Ingrese usuario";
             TxtContrasena.Text = "Ingrese Contraseña";
         }
-
-
-
-
-        #endregion
-
-       
+        #endregion       
     }
 }
