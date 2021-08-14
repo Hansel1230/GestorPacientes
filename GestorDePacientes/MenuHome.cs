@@ -1,7 +1,10 @@
-﻿using System;
+﻿using BusinesLayer;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,11 +19,19 @@ namespace GestorDePacientes
         public static MenuHome Instancia { get; } = new MenuHome();
         #endregion
 
+        private GestorPacientesServices services;
         public string TipoMant { get; set; }
+        public int HomeValid { get; set; }
 
         public MenuHome()
         {
             InitializeComponent();
+
+            string connectionString = ConfigurationManager.ConnectionStrings["Default"].ToString();
+
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            services = new GestorPacientesServices(connection);
         }
 
 
@@ -28,44 +39,94 @@ namespace GestorDePacientes
 
         private void BtnUsuario_Click(object sender, EventArgs e)
         {
-            Dgv.Instancia.Show();
-            Instancia.Hide();
-            TipoMant = "Usuario";
+            if (HomeValid == 1)
+            {
+                
+                Dgv.Instancia.Show();
+                Instancia.Hide();
+                TipoMant = "Usuario";
+
+            }
+            else
+            {
+                MessageBox.Show("Usted no tiene acceso a ese apartado");
+            }
+            
         }
 
         private void BtnMedico_Click(object sender, EventArgs e)
         {
-            Dgv.Instancia.Show();
-            Instancia.Hide();
-            TipoMant = "Medico";
+            if (HomeValid == 1)
+            {
+                Dgv.Instancia.Show();
+                Instancia.Hide();
+                TipoMant = "Medico";
+            }
+            else
+            {
+                MessageBox.Show("Usted no tiene acceso a ese apartado");
+            }
+            
         }
 
         private void BtnPrLabo_Click(object sender, EventArgs e)
         {
-            Dgv.Instancia.Show();
-            Instancia.Hide();
-            TipoMant = "PrLabo";
+            if (HomeValid == 1)
+            {
+                Dgv.Instancia.Show();
+                Instancia.Hide();
+                TipoMant = "PrLabo";
+            }
+            else
+            {
+                MessageBox.Show("Usted no tiene acceso a ese apartado");
+            }
+            
         }
 
         private void BtnPaciente_Click(object sender, EventArgs e)
         {
-            Dgv.Instancia.Show();
-            Instancia.Hide();
-            TipoMant = "Paciente";
+            if (HomeValid == 2)
+            {
+                Dgv.Instancia.Show();
+                Instancia.Hide();
+                TipoMant = "Paciente";
+            }
+            else
+            {
+                MessageBox.Show("Usted no tiene acceso a ese apartado");
+            }
+            
         }
 
         private void BtnCita_Click(object sender, EventArgs e)
         {
-            Dgv.Instancia.Show();
-            Instancia.Hide();
-            TipoMant = "Cita";
+            if (HomeValid == 2)
+            {
+                Dgv.Instancia.Show();
+                Instancia.Hide();
+                TipoMant = "Cita";
+            }
+            else
+            {
+                MessageBox.Show("Usted no tiene acceso a ese apartado");
+            }
+             
         }
 
         private void BtnResulPrLabo_Click(object sender, EventArgs e)
         {
-            Dgv.Instancia.Show();
-            Instancia.Hide();
-            TipoMant = "ResulPrLabo";
+            if (HomeValid == 2)
+            {
+                Dgv.Instancia.Show();
+                Instancia.Hide();
+                TipoMant = "ResulPrLabo";
+            }
+            else
+            {
+                MessageBox.Show("Usted no tiene acceso a ese apartado");
+            }
+            
         }
 
         private void LoginToolStripMenuItem_Click(object sender, EventArgs e)
@@ -75,8 +136,12 @@ namespace GestorDePacientes
            
         }
 
+
         #endregion
 
+        private void MenuHome_Load(object sender, EventArgs e)
+        {
 
+        }
     }
 }

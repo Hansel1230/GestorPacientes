@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DataBase;
 using DataBase.Modelos;
-using DataBase;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace BusinesLayer
 {
     public class GestorPacientesServices
     {
+
         private RepositorioGestorPacientes repositorio;
-            
+
         public GestorPacientesServices(SqlConnection connection)
         {
             repositorio = new RepositorioGestorPacientes(connection);
@@ -20,16 +17,10 @@ namespace BusinesLayer
 
         #region login
 
-        public bool loginReader { get; set; }
-
-        public bool validLogin(string user, string contrasena)
-        {
-            repositorio.LoginReader = loginReader;
-
-            repositorio.validLogin(user, contrasena);
-
-            return loginReader;
-        }
+        public Usuario validLogin(Usuario user)
+        {            
+            return repositorio.validLogin(user);
+        }        
         #endregion
 
         #region Usuario 
@@ -42,15 +33,21 @@ namespace BusinesLayer
         public bool EditarUsuario(Usuario usuario, int idUsuario)
         {
 
-            return repositorio.EditarUsuario(usuario,idUsuario);
+            return repositorio.EditarUsuario(usuario, idUsuario);
         }
 
         public bool EliminarUsuario(int id)
         {
             return repositorio.EliminarUsuario(id);
         }
-        #endregion
 
+        public DataTable GetAllUsuario()
+        {
+            return repositorio.GetAllUsuario();
+        }
+
+        
+        #endregion
 
         #region Medico 
 
@@ -69,8 +66,12 @@ namespace BusinesLayer
         {
             return repositorio.EliminarMedico(id);
         }
-        #endregion
 
+        public DataTable GetAllMedico()
+        {
+            return repositorio.GetAllMedico();
+        }
+        #endregion
 
         #region Pacientes 
 
@@ -88,7 +89,28 @@ namespace BusinesLayer
         {
             return repositorio.EliminarPaciente(id);
         }
+
+        public DataTable GetAllPaciente()
+        {
+            return repositorio.GetAllPaciente();
+        }
         #endregion
-        
+
+
+        public DataTable GetAllPrueba()
+        {
+            return repositorio.GetAllPrueba();
+        }
+
+        public DataTable GetAllResultado()
+        {
+            return repositorio.GetAllResultado();
+        }
+
+        public DataTable GetAllCita()
+        {
+            return repositorio.GetAllCita();
+        }
+
     }
 }

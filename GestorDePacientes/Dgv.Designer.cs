@@ -47,9 +47,9 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.49339F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.60793F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.80282F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.774194F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.3871F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.83871F));
             this.tableLayoutPanel1.Controls.Add(this.menuStrip1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.DgvData, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.BtnAgregar, 1, 2);
@@ -64,7 +64,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.92233F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 65.29126F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.34951F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(908, 427);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(620, 427);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // menuStrip1
@@ -74,7 +74,7 @@
             this.menuToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(908, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(620, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -89,7 +89,7 @@
             // atrasToolStripMenuItem
             // 
             this.atrasToolStripMenuItem.Name = "atrasToolStripMenuItem";
-            this.atrasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.atrasToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
             this.atrasToolStripMenuItem.Text = "Atras";
             this.atrasToolStripMenuItem.Click += new System.EventHandler(this.atrasToolStripMenuItem_Click);
             // 
@@ -100,17 +100,18 @@
             this.DgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DgvData.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
-            this.DgvData.Location = new System.Drawing.Point(180, 91);
+            this.DgvData.Location = new System.Drawing.Point(45, 91);
             this.DgvData.Name = "DgvData";
-            this.DgvData.Size = new System.Drawing.Size(508, 273);
+            this.DgvData.Size = new System.Drawing.Size(449, 273);
             this.DgvData.TabIndex = 1;
+            this.DgvData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvData_CellClick);
             // 
             // BtnAgregar
             // 
             this.BtnAgregar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BtnAgregar.Location = new System.Drawing.Point(180, 45);
+            this.BtnAgregar.Location = new System.Drawing.Point(45, 45);
             this.BtnAgregar.Name = "BtnAgregar";
-            this.BtnAgregar.Size = new System.Drawing.Size(508, 40);
+            this.BtnAgregar.Size = new System.Drawing.Size(449, 40);
             this.BtnAgregar.TabIndex = 2;
             this.BtnAgregar.Text = "Agregar";
             this.BtnAgregar.UseVisualStyleBackColor = true;
@@ -119,9 +120,9 @@
             // BtnDeselect
             // 
             this.BtnDeselect.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BtnDeselect.Location = new System.Drawing.Point(694, 370);
+            this.BtnDeselect.Location = new System.Drawing.Point(500, 370);
             this.BtnDeselect.Name = "BtnDeselect";
-            this.BtnDeselect.Size = new System.Drawing.Size(211, 48);
+            this.BtnDeselect.Size = new System.Drawing.Size(117, 54);
             this.BtnDeselect.TabIndex = 3;
             this.BtnDeselect.Text = "Deseleccionar";
             this.BtnDeselect.UseVisualStyleBackColor = true;
@@ -136,11 +137,11 @@
             this.tableLayoutPanel2.Controls.Add(this.BtnEditar, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.BtnEliminar, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(180, 370);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(45, 370);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(508, 54);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(449, 54);
             this.tableLayoutPanel2.TabIndex = 4;
             // 
             // BtnEditar
@@ -148,7 +149,7 @@
             this.BtnEditar.Dock = System.Windows.Forms.DockStyle.Top;
             this.BtnEditar.Location = new System.Drawing.Point(3, 3);
             this.BtnEditar.Name = "BtnEditar";
-            this.BtnEditar.Size = new System.Drawing.Size(248, 48);
+            this.BtnEditar.Size = new System.Drawing.Size(218, 48);
             this.BtnEditar.TabIndex = 0;
             this.BtnEditar.Text = "Editar";
             this.BtnEditar.UseVisualStyleBackColor = true;
@@ -158,9 +159,9 @@
             // BtnEliminar
             // 
             this.BtnEliminar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BtnEliminar.Location = new System.Drawing.Point(257, 3);
+            this.BtnEliminar.Location = new System.Drawing.Point(227, 3);
             this.BtnEliminar.Name = "BtnEliminar";
-            this.BtnEliminar.Size = new System.Drawing.Size(248, 48);
+            this.BtnEliminar.Size = new System.Drawing.Size(219, 48);
             this.BtnEliminar.TabIndex = 1;
             this.BtnEliminar.Text = "Eliminar";
             this.BtnEliminar.UseVisualStyleBackColor = true;
@@ -171,11 +172,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(908, 427);
+            this.ClientSize = new System.Drawing.Size(620, 427);
             this.Controls.Add(this.tableLayoutPanel1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Dgv";
             this.Text = "Dgv";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Dgv_FormClosing);
             this.Load += new System.EventHandler(this.Dgv_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

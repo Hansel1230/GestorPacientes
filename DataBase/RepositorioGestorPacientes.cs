@@ -10,7 +10,7 @@ namespace DataBase
     {
         private SqlConnection _Connection;
 
-        public bool LoginReader { get; set; }
+        public int HomeValid { get; set; }
 
         public RepositorioGestorPacientes(SqlConnection Connection)
         {
@@ -19,28 +19,36 @@ namespace DataBase
 
         #region login 
 
-        public bool validLogin(string user,string contrasena)
+        public Usuario validLogin(Usuario user)
         {
-            Usuario usuario = new Usuario(user,contrasena);
+            _Connection.Open();
 
-            SqlCommand command = new SqlCommand("select Nombre_Usuario,Contrasena from Usuarios" +
-                " where Nombre_Usuario=@nombre_user and Contrasena=@contrasena)", _Connection);
+            SqlCommand command = new SqlCommand("select id,Nombre,Apellido,Correo,Nombre_Usuario,Contrasena,Tipo_Usuario from Usuarios" +
+                " where Nombre_Usuario=@nombre_user and Contrasena=@contrasena", _Connection);
 
-            command.Parameters.AddWithValue("@nombre_user", usuario.NombreUser);
-            command.Parameters.AddWithValue("@contrasena", usuario.Contrasena);
+
+            
+            command.Parameters.AddWithValue("@nombre_user", user.NombreUser);
+            command.Parameters.AddWithValue("@contrasena", user.Contrasena);
 
             SqlDataReader reader = command.ExecuteReader();
 
-            if (reader.Read())
+            Usuario usuario = new Usuario();
+            while(reader.Read())
             {
-                LoginReader = true;
-            }
-            else
-            {
-                LoginReader = false;
+                usuario.id = reader.IsDBNull(0)?0:reader.GetInt32(0);
+                usuario.Nombre = reader.IsDBNull(1) ? "" : reader.GetString(1);
+                usuario.Apellido= reader.IsDBNull(2) ? "" : reader.GetString(2);
+                usuario.Correo = reader.IsDBNull(3) ? "" : reader.GetString(3);
+                usuario.NombreUser = reader.IsDBNull(4) ? "" : reader.GetString(4);
+                usuario.Contrasena = reader.IsDBNull(5) ? "" : reader.GetString(5);
+                usuario.TipoUser = reader.IsDBNull(6) ? 0 : reader.GetInt32(6);        
             }
 
-            return ExecuteDml(command);
+            reader.Close();
+            reader.Dispose();
+            _Connection.Close();
+            return usuario;
         }
 
         #endregion
@@ -90,7 +98,6 @@ namespace DataBase
         }
         #endregion
 
-
         #region Mant.bbdd.Medicos
 
         //Medicos
@@ -132,7 +139,6 @@ namespace DataBase
             return ExecuteDml(command);
         }
         #endregion
-
 
         #region Mant.bbdd.Pacientes
 
@@ -186,7 +192,6 @@ namespace DataBase
             return ExecuteDml(command);
         }
         #endregion
-
 
         #region Mant.bbdd.Pruebas_Laboratorio
 
@@ -242,9 +247,61 @@ namespace DataBase
         }
         #endregion
 
+        #region getData
+        public DataTable GetAllUsuario()
+        {
+            SqlDataAdapter query = new SqlDataAdapter("select Nombre,Apellido,Correo,Nombre_Usuario,Contrasena," +
+                "Tipo_Usuario from Usuarios", _Connection);
 
+            return LoadData(query);
+        }
 
+        public DataTable GetAllMedico()
+        {
+            SqlDataAdapter query = new SqlDataAdapter("select Nombre,Apellido,Correo,Telefono,Cedula," +
+                "Foto from Medicos", _Connection);
 
+            return LoadData(query);
+        }
+
+        public DataTable GetAllPaciente()
+        {
+            SqlDataAdapter query = new SqlDataAdapter("select Nombre,Apellido,Telefono,Direccion,Cedula," +
+                "Fecha_Nacimiento as 'Fecha de nacimiento'," +
+                "Fumador,Alergia,Foto from Pacientes", _Connection);
+
+            return LoadData(query);
+        }
+
+        public DataTable GetAllPrueba()
+        {
+            SqlDataAdapter query = new SqlDataAdapter("select Nombre from Pruebas_Laboratorio", _Connection);
+
+            return LoadData(query);
+        }
+
+        public DataTable GetAllResultado()
+        {
+            //se requiere 'NombrePaciente','ApellidoPaciente','CedulaPaciente','NombrePruebalaboratorio'
+            SqlDataAdapter query = new SqlDataAdapter("select idPaciente as 'Paciente',idCita as 'Cita'," +
+                "idPrueba_Laboratorio as 'Prueba de laboratorio',idDoctor as 'Doctor'," +
+                "Resultado_Prueba as 'Resultado de prueba',Estado_Resultado as 'Estado de prueba'" +
+                "from Resultados_Laboratorio", _Connection);
+              //+"inner join Pacientes on (id)", _Connection);
+
+            return LoadData(query);
+        }
+
+        public DataTable GetAllCita()
+        {
+            SqlDataAdapter query = new SqlDataAdapter("select Nombre,Apellido,Correo,Nombre_Usuario,Contrasena," +
+                "Tipo_Usuario from Usuarios", _Connection);
+
+            return LoadData(query);
+        }
+        #endregion
+
+        #region Acceso.coneccion
         public bool ExecuteDml(SqlCommand query)
         {
             try
@@ -262,7 +319,22 @@ namespace DataBase
                 return false;
             }
         }
-        
 
+        public DataTable LoadData(SqlDataAdapter query)
+        {
+            try
+            {
+                DataTable data = new DataTable();
+                _Connection.Open();
+                query.Fill(data);
+                _Connection.Close();
+                return data;
+            }catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+        #endregion
     }
 }

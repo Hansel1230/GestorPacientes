@@ -47,9 +47,9 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.35616F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.23288F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.06849F));
             this.tableLayoutPanel1.Controls.Add(this.LblLogin, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.LblUsuario, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.TxtUsuario, 1, 3);
@@ -68,16 +68,17 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.04011F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(437, 349);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(292, 235);
             this.tableLayoutPanel1.TabIndex = 0;
+            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // LblLogin
             // 
             this.LblLogin.AutoSize = true;
             this.LblLogin.Dock = System.Windows.Forms.DockStyle.Top;
-            this.LblLogin.Location = new System.Drawing.Point(148, 35);
+            this.LblLogin.Location = new System.Drawing.Point(42, 23);
             this.LblLogin.Name = "LblLogin";
-            this.LblLogin.Size = new System.Drawing.Size(139, 13);
+            this.LblLogin.Size = new System.Drawing.Size(202, 13);
             this.LblLogin.TabIndex = 1;
             this.LblLogin.Text = "Login";
             this.LblLogin.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -87,9 +88,9 @@
             // 
             this.LblUsuario.AutoSize = true;
             this.LblUsuario.Dock = System.Windows.Forms.DockStyle.Top;
-            this.LblUsuario.Location = new System.Drawing.Point(148, 113);
+            this.LblUsuario.Location = new System.Drawing.Point(42, 75);
             this.LblUsuario.Name = "LblUsuario";
-            this.LblUsuario.Size = new System.Drawing.Size(139, 13);
+            this.LblUsuario.Size = new System.Drawing.Size(202, 13);
             this.LblUsuario.TabIndex = 2;
             this.LblUsuario.Text = "Usuario";
             this.LblUsuario.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -97,9 +98,9 @@
             // TxtUsuario
             // 
             this.TxtUsuario.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TxtUsuario.Location = new System.Drawing.Point(148, 150);
+            this.TxtUsuario.Location = new System.Drawing.Point(42, 101);
             this.TxtUsuario.Name = "TxtUsuario";
-            this.TxtUsuario.Size = new System.Drawing.Size(139, 20);
+            this.TxtUsuario.Size = new System.Drawing.Size(202, 20);
             this.TxtUsuario.TabIndex = 3;
             this.TxtUsuario.Click += new System.EventHandler(this.TxtUsuario_Click);
             this.TxtUsuario.Leave += new System.EventHandler(this.TxtUsuario_Leave);
@@ -108,9 +109,9 @@
             // 
             this.LblContransena.AutoSize = true;
             this.LblContransena.Dock = System.Windows.Forms.DockStyle.Top;
-            this.LblContransena.Location = new System.Drawing.Point(148, 198);
+            this.LblContransena.Location = new System.Drawing.Point(42, 132);
             this.LblContransena.Name = "LblContransena";
-            this.LblContransena.Size = new System.Drawing.Size(139, 13);
+            this.LblContransena.Size = new System.Drawing.Size(202, 13);
             this.LblContransena.TabIndex = 4;
             this.LblContransena.Text = "Contraseña";
             this.LblContransena.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -118,9 +119,9 @@
             // TxtContrasena
             // 
             this.TxtContrasena.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TxtContrasena.Location = new System.Drawing.Point(148, 250);
+            this.TxtContrasena.Location = new System.Drawing.Point(42, 168);
             this.TxtContrasena.Name = "TxtContrasena";
-            this.TxtContrasena.Size = new System.Drawing.Size(139, 20);
+            this.TxtContrasena.Size = new System.Drawing.Size(202, 20);
             this.TxtContrasena.TabIndex = 5;
             this.TxtContrasena.Click += new System.EventHandler(this.TxtContrasena_Click);
             this.TxtContrasena.Leave += new System.EventHandler(this.TxtContrasena_Leave);
@@ -131,12 +132,12 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.BtnIniciarSeccion, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(148, 300);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(42, 201);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(139, 46);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(202, 31);
             this.tableLayoutPanel2.TabIndex = 7;
             // 
             // BtnIniciarSeccion
@@ -144,7 +145,7 @@
             this.BtnIniciarSeccion.Dock = System.Windows.Forms.DockStyle.Top;
             this.BtnIniciarSeccion.Location = new System.Drawing.Point(3, 3);
             this.BtnIniciarSeccion.Name = "BtnIniciarSeccion";
-            this.BtnIniciarSeccion.Size = new System.Drawing.Size(133, 40);
+            this.BtnIniciarSeccion.Size = new System.Drawing.Size(196, 25);
             this.BtnIniciarSeccion.TabIndex = 7;
             this.BtnIniciarSeccion.Text = "Iniciar Seccion";
             this.BtnIniciarSeccion.UseVisualStyleBackColor = true;
@@ -157,7 +158,7 @@
             this.menuToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(437, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(292, 23);
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -172,7 +173,7 @@
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
@@ -180,7 +181,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(437, 349);
+            this.ClientSize = new System.Drawing.Size(292, 235);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Login";
             this.Text = "Login";

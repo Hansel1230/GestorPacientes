@@ -94,7 +94,7 @@
             // atrasToolStripMenuItem
             // 
             this.atrasToolStripMenuItem.Name = "atrasToolStripMenuItem";
-            this.atrasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.atrasToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
             this.atrasToolStripMenuItem.Text = "Login";
             this.atrasToolStripMenuItem.Click += new System.EventHandler(this.LoginToolStripMenuItem_Click);
             // 
@@ -184,6 +184,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MenuHome";
             this.Text = "MenuHome";
+            this.Load += new System.EventHandler(this.MenuHome_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);

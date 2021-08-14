@@ -8,7 +8,7 @@ namespace DataBase.Modelos
 {
     public class Usuario
     {
-        public int id { get; }
+        public int id { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Correo { get; set; }
@@ -16,6 +16,10 @@ namespace DataBase.Modelos
         public string Contrasena { get; set; }
         public int TipoUser { get; set; }
 
+        public Usuario()
+        {
+
+        }
         public Usuario(string nombre,string apellido,string correo,string nombreuser,string contrasena,int tipouser)
         {
             this.Nombre = nombre;

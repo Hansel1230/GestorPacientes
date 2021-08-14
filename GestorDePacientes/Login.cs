@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using BusinesLayer;
 using System.Data.SqlClient;
 using System.Configuration;
+using DataBase.Modelos;
 
 namespace GestorDePacientes
 {
@@ -11,7 +12,6 @@ namespace GestorDePacientes
         #region instancia
         public static Login Instancia { get; } = new Login();
         #endregion
-        bool isValid;
 
         private GestorPacientesServices services;
        
@@ -34,6 +34,11 @@ namespace GestorDePacientes
 
         }
 
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
         private void Login_Load(object sender, EventArgs e)
         {
             Fultxt();
@@ -41,38 +46,30 @@ namespace GestorDePacientes
 
         private void BtnIniciarSeccion_Click(object sender, EventArgs e)
         {
-            isValid = true;
             if (TxtUsuario.Text == "Ingrese usuario")
             {
                 MessageBox.Show("Debe ingresar un usuario");
-                isValid = false;
             }
             else if (TxtContrasena.Text == "Ingrese Contraseña")
             {
                 MessageBox.Show("Debe ingresar una contraseña");
-                isValid = false;
             }
             else
             {
-                try
+                Usuario user = new Usuario(TxtUsuario.Text, TxtContrasena.Text);
+                Usuario usuario = services.validLogin(user);
+
+                if (usuario.NombreUser!=null)
                 {
-                    services.validLogin(TxtUsuario.Text, TxtContrasena.Text);
-                    if (services.loginReader == false)
-                    {
-                        isValid = false;
-                        MessageBox.Show("Credenciales Invalidas", "Error");
-                    }
+                    MenuHome.Instancia.HomeValid = usuario.TipoUser;
+                    MessageBox.Show("Bienvenido " + user.NombreUser,"Info");
+                    MenuHome.Instancia.Show();
+                    Instancia.Hide();
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.ToString());
+                    MessageBox.Show("Credenciales Invalidas", "Error");
                 }
-                
-            }
-            if (isValid)
-            {
-                MenuHome.Instancia.Show();
-                Instancia.Hide();
             }
         }
 
@@ -123,6 +120,8 @@ namespace GestorDePacientes
             TxtUsuario.Text = "Ingrese usuario";
             TxtContrasena.Text = "Ingrese Contraseña";
         }
-        #endregion       
+        #endregion
+
+        
     }
 }

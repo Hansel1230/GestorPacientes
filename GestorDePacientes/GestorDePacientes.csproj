@@ -139,6 +139,10 @@
       <Project>{ede0c33f-b9d3-4107-810b-2811f9df036b}</Project>
       <Name>BusinesLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DataBase\DataBase.csproj">
+      <Project>{F216B92C-4D10-4FC6-96ED-347CA2ED098C}</Project>
+      <Name>DataBase</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
