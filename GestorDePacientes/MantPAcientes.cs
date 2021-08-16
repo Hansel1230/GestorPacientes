@@ -1,7 +1,10 @@
-﻿using System;
+﻿using BusinesLayer;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,20 +17,31 @@ namespace GestorDePacientes
     {
         #region instancia
         public static MantPAcientes Instancia { get; } = new MantPAcientes();
+
+        private GestorPacientesServices services;
         #endregion
 
         bool isValid;
-
+        private bool fumador { get; set; }
+        public int PacienteId { get; set; }
         public MantPAcientes()
         {
             InitializeComponent();
+
+            string connectionString = ConfigurationManager.ConnectionStrings["Default"].ToString();
+
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            services = new GestorPacientesServices(connection);
+            PacienteId = 0;
+            fumador = false;
         }
 
         #region Eventos 
 
         private void MantPAcientes_Load(object sender, EventArgs e)
         {
-            Fulltxt();
+            //Fulltxt();
         }
 
         private void BtnAgregar_Click(object sender, EventArgs e)
@@ -37,7 +51,7 @@ namespace GestorDePacientes
 
         private void atrasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MenuHome.Instancia.Show();
+            Dgv.Instancia.Show();
             Instancia.Hide();
         }
         private void TxtNombre_Click(object sender, EventArgs e)
@@ -153,6 +167,14 @@ namespace GestorDePacientes
                 TxtAlergias.Text= "Ingrese Alergias";
             }
         }
+
+        private void ChBoxFumador_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ChBoxFumador.Checked == true)
+            {
+                fumador = true;
+            }
+        }
         #endregion
 
         #region Metodos
@@ -208,10 +230,42 @@ namespace GestorDePacientes
             }
             if (isValid)
             {
+                
+                string foto = "";
+                DataBase.Modelos.Paciente paciente = new DataBase.Modelos.Paciente(TxtNombre.Text,TxtApellido.Text,
+                    TxtTelefono.Text,TxtDress.Text,TxtCedula.Text,TxtDate.Text,fumador,TxtAlergias.Text,foto);
+                //se le pasa  foto para evitar error y poder correr; eso se tiene que arreglar 
+                if (PacienteId > 0)
+                {
+                    services.EditarPaciente(paciente, PacienteId);
+                    PacienteId = 0;
+                }
+                else
+                {
+                    services.AgregarPaciente(paciente);
+                }
+                Dgv.Instancia.LoadData();              
                 Dgv.Instancia.Show();
                 Instancia.Hide();
+                fumador = false;
             }
-        }    
-        #endregion       
+        }
+
+        public void LoadTxtPaciente()
+        {
+            PacienteId = Convert.ToInt32(Dgv.Instancia.Filaceleccionada.Cells[0].Value);
+            TxtNombre.Text = Dgv.Instancia.Filaceleccionada.Cells[1].Value.ToString();
+            TxtApellido.Text = Dgv.Instancia.Filaceleccionada.Cells[2].Value.ToString();
+            TxtTelefono.Text = Dgv.Instancia.Filaceleccionada.Cells[3].Value.ToString();
+            TxtDress.Text = Dgv.Instancia.Filaceleccionada.Cells[4].Value.ToString();
+            TxtCedula.Text = Dgv.Instancia.Filaceleccionada.Cells[5].Value.ToString();
+            TxtDate.Text = Dgv.Instancia.Filaceleccionada.Cells[6].Value.ToString();
+            TxtAlergias.Text = Dgv.Instancia.Filaceleccionada.Cells[8].Value.ToString();
+            Dgv.Instancia.Filaceleccionada = null;
+        }
+
+        #endregion
+
+
     }
 }

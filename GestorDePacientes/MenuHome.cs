@@ -74,9 +74,10 @@ namespace GestorDePacientes
         {
             if (HomeValid == 1)
             {
-                Dgv.Instancia.Show();
-                Instancia.Hide();
                 TipoMant = "PrLabo";
+                Dgv.Instancia.LoadData();
+                Dgv.Instancia.Show();
+                Instancia.Hide();                
             }
             else
             {
@@ -87,11 +88,12 @@ namespace GestorDePacientes
 
         private void BtnPaciente_Click(object sender, EventArgs e)
         {
-            if (HomeValid == 2)
+            if (HomeValid == 0)
             {
-                Dgv.Instancia.Show();
-                Instancia.Hide();
                 TipoMant = "Paciente";
+                Dgv.Instancia.LoadData();
+                Dgv.Instancia.Show();
+                Instancia.Hide();                
             }
             else
             {
@@ -102,7 +104,7 @@ namespace GestorDePacientes
 
         private void BtnCita_Click(object sender, EventArgs e)
         {
-            if (HomeValid == 2)
+            if (HomeValid == 0)
             {
                 Dgv.Instancia.Show();
                 Instancia.Hide();
@@ -117,7 +119,7 @@ namespace GestorDePacientes
 
         private void BtnResulPrLabo_Click(object sender, EventArgs e)
         {
-            if (HomeValid == 2)
+            if (HomeValid == 0)
             {
                 Dgv.Instancia.Show();
                 Instancia.Hide();

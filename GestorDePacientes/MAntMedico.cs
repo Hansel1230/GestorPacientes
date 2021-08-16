@@ -253,9 +253,9 @@ namespace GestorDePacientes
             TxtNombre.Text = Dgv.Instancia.Filaceleccionada.Cells[1].Value.ToString();
             TxtApellido.Text = Dgv.Instancia.Filaceleccionada.Cells[2].Value.ToString();
             TxtCorreo.Text = Dgv.Instancia.Filaceleccionada.Cells[3].Value.ToString();
-            TxtTelefono.Text = Dgv.Instancia.Filaceleccionada.Cells[3].Value.ToString();
-            TxtCedula.Text = Dgv.Instancia.Filaceleccionada.Cells[3].Value.ToString();
-            //txt.Text = Dgv.Instancia.Filaceleccionada.Cells[3].Value.ToString();
+            TxtTelefono.Text = Dgv.Instancia.Filaceleccionada.Cells[4].Value.ToString();
+            TxtCedula.Text = Dgv.Instancia.Filaceleccionada.Cells[5].Value.ToString();
+            //txt.Text = Dgv.Instancia.Filaceleccionada.Cells[6].Value.ToString();
             Dgv.Instancia.Filaceleccionada = null;
         }        
     }

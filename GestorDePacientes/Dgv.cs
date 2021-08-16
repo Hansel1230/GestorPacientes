@@ -247,7 +247,10 @@ namespace GestorDePacientes
                 {
                     // MantUsuario.Instancia.LoadTxt();
                 }
-                MantPrueva.Instancia.fulltxt();
+                else
+                {
+                    MantPrueva.Instancia.fulltxt();
+                }
                 MantPrueva.Instancia.Show();
                 Instancia.Hide();
             }
@@ -255,7 +258,11 @@ namespace GestorDePacientes
             {
                 if (Filaceleccionada != null)
                 {
-                    // MantUsuario.Instancia.LoadTxt();
+                    MantPAcientes.Instancia.LoadTxtPaciente();
+                }
+                else
+                {
+                    MantPAcientes.Instancia.Fulltxt();
                 }
                 MantPAcientes.Instancia.Show();
                 Instancia.Hide();

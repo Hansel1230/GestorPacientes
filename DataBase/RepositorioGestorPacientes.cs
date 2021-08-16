@@ -104,11 +104,12 @@ namespace DataBase
 
         public bool AgregarMedico(Medico item)
         {
-            SqlCommand command = new SqlCommand("insert into Medicos(Nombre,Apellido,Correo,Cedula,Foto) values (@nombre,@apellido,@correo,@cedula,@foto)", _Connection);
+            SqlCommand command = new SqlCommand("insert into Medicos(Nombre,Apellido,Correo,Telefono,Cedula,Foto) values (@nombre,@apellido,@correo,@telefono,@cedula,@foto)", _Connection);
 
             command.Parameters.AddWithValue("@nombre", item.Nombre);
             command.Parameters.AddWithValue("@apellido", item.Apellido);
             command.Parameters.AddWithValue("@correo", item.Correo);
+            command.Parameters.AddWithValue("@telefono", item.Telefono);
             command.Parameters.AddWithValue("@cedula", item.Cedula);
             command.Parameters.AddWithValue("@foto", item.Foto);
 
@@ -135,7 +136,7 @@ namespace DataBase
         {
             SqlCommand command = new SqlCommand("delete Medicos where id=@id", _Connection);
 
-            command.Parameters.AddWithValue("@id", id);
+            command.Parameters.AddWithValue("@id",id);
 
             return ExecuteDml(command);
         }
@@ -268,9 +269,10 @@ namespace DataBase
 
         public DataTable GetAllPaciente()
         {
-            SqlDataAdapter query = new SqlDataAdapter("select Nombre,Apellido,Telefono,Direccion,Cedula," +
-                "Fecha_Nacimiento as 'Fecha de nacimiento'," +
-                "Fumador,Alergia,Foto from Pacientes", _Connection);
+            SqlDataAdapter query = new SqlDataAdapter("select id,Nombre,Apellido,Telefono,Direccion,Cedula," +
+                "Fecha_Nacimiento as 'Fecha de nacimiento'," +                
+                "CASE WHEN Fumador = 1 THEN 'Si' ELSE 'No' END AS Fumador, Alergias,Foto "  +
+                "from Pacientes", _Connection);
 
             return LoadData(query);
         }
