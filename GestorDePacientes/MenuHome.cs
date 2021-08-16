@@ -20,7 +20,7 @@ namespace GestorDePacientes
         #endregion
 
         private GestorPacientesServices services;
-        public string TipoMant { get; set; }
+        public string TipoMant { get; set; } = "";
         public int HomeValid { get; set; }
 
         public MenuHome()
@@ -41,11 +41,10 @@ namespace GestorDePacientes
         {
             if (HomeValid == 1)
             {
-                
-                Dgv.Instancia.Show();
-                Instancia.Hide();
                 TipoMant = "Usuario";
-
+                Dgv.Instancia.LoadData();
+                Dgv.Instancia.Show();
+                Instancia.Hide();              
             }
             else
             {

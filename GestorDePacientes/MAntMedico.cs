@@ -1,4 +1,8 @@
-﻿using System.Windows.Forms;
+﻿using BusinesLayer;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.IO;
+using System.Windows.Forms;
 
 namespace GestorDePacientes
 {
@@ -7,13 +11,29 @@ namespace GestorDePacientes
     {
         #region instancia
         public static MAntMedico Instancia { get; } = new MAntMedico();
+
+        private GestorPacientesServices services;
         #endregion
 
         bool isValid;
 
+        public string _filename;
+
+        public int? index;
+
+        public int Medicoid { get; set; }
+
         public MAntMedico()
         {
             InitializeComponent();
+
+            string connectionString = ConfigurationManager.ConnectionStrings["Default"].ToString();
+
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            services = new GestorPacientesServices(connection);
+            _filename = "";
+            index=0;
         }
 
         #region Eventos 
@@ -112,6 +132,11 @@ namespace GestorDePacientes
 
             }
         }
+
+        private void BtnSubir_Click(object sender, System.EventArgs e)
+        {
+            AddFoto();
+        }
         #endregion
 
         #region Metodos 
@@ -155,12 +180,67 @@ namespace GestorDePacientes
             }
             if (isValid)
             {
+                DataBase.Modelos.Medico medico = new DataBase.Modelos.Medico(TxtNombre.Text, TxtApellido.Text,
+                    TxtCorreo.Text, TxtCedula.Text, TxtTelefono.Text, TxtTelefono.Text);
+                //se repite Txttelefono.Text para evitar el error, en su lugar debe ir el string "foto"
+
+                if (Medicoid > 0)
+                {
+                    services.EditarMedico(medico, Medicoid);
+                    Medicoid = 0;
+                }
+                else
+                {
+                    services.AgregarMedico(medico);
+                }
                 Dgv.Instancia.Show();
                 Instancia.Hide();
             }
-        }       
-        #endregion
+        }
+
+        private void AddFoto()
+        {
+            DialogResult result = FotoDialog.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                string file = FotoDialog.FileName;                
+                pbFotoPerfil.ImageLocation = file;
+                _filename=file;
+            }
+        }
 
         
+        private void SavePhoto()
+        {
+
+            
+             int id=id == null ? services.GetLastId() : index);
+
+            string directory = @"Images\Medico\" + id + "\\";
+
+            string[] fileNameSplit = _filename.Split('\\');
+            string filename = fileNameSplit[(fileNameSplit.Length - 1)];
+
+            CreateDirectory(directory);
+
+            string destination = directory + filename;
+
+            File.Copy(_filename,destination,true);
+
+            services.SavePhoto(id, destination);
+        }
+
+        private void CreateDirectory(string directory)
+        {
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+        }
+        
+        #endregion
+
+
     }
 }

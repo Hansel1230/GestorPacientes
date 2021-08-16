@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using BusinesLayer;
 using BusinesLayer.CustomControlItem;
-using BusinesLayer;
+using System;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace GestorDePacientes
 {
@@ -24,7 +17,7 @@ namespace GestorDePacientes
 
         bool isValid;
         public int Usuarioid { get; set; } = 0;
-        public int tipoUser { get; set; }
+        public int tipoUser { get; set; } = 0;
 
         public MantUsuario()
         {
@@ -41,7 +34,7 @@ namespace GestorDePacientes
         #region Eventos
         private void MantUsuario_Load(object sender, EventArgs e)
         {
-            Fultxt();
+           // Fultxt();
             loadCombobox();
         }
 
@@ -53,7 +46,7 @@ namespace GestorDePacientes
         //Nombre
         private void TxtNombre_Click(object sender, EventArgs e)
         {
-            if (TxtNombre.Text== "Ingrese Nombre")
+            if (TxtNombre.Text == "Ingrese Nombre")
             {
                 TxtNombre.Text = "";
             }
@@ -61,7 +54,7 @@ namespace GestorDePacientes
 
         private void TxtNombre_Leave(object sender, EventArgs e)
         {
-            if (TxtNombre.Text=="")
+            if (TxtNombre.Text == "")
             {
                 TxtNombre.Text = "Ingrese Nombre";
             }
@@ -70,15 +63,15 @@ namespace GestorDePacientes
         //Apellido
         private void TxtApellido_Click(object sender, EventArgs e)
         {
-            if (TxtApellido.Text== "Ingrese Apellido")
+            if (TxtApellido.Text == "Ingrese Apellido")
             {
-                TxtApellido.Text="";
+                TxtApellido.Text = "";
             }
         }
 
         private void TxtApellido_Leave(object sender, EventArgs e)
         {
-            if (TxtApellido.Text=="")
+            if (TxtApellido.Text == "")
             {
                 TxtApellido.Text = "Ingrese Apellido";
             }
@@ -86,7 +79,7 @@ namespace GestorDePacientes
         //Correo
         private void TxtCorreo_Click(object sender, EventArgs e)
         {
-            if (TxtCorreo.Text== "Ingrese un Correo")
+            if (TxtCorreo.Text == "Ingrese un Correo")
             {
                 TxtCorreo.Text = "";
             }
@@ -94,7 +87,7 @@ namespace GestorDePacientes
 
         private void TxtCorreo_Leave(object sender, EventArgs e)
         {
-            if (TxtCorreo.Text=="")
+            if (TxtCorreo.Text == "")
             {
                 TxtCorreo.Text = "Ingrese un Correo";
             }
@@ -102,7 +95,7 @@ namespace GestorDePacientes
         //Usuario
         private void TxtUsuario_Click(object sender, EventArgs e)
         {
-            if (TxtUsuario.Text== "Ingrese Usuario")
+            if (TxtUsuario.Text == "Ingrese Usuario")
             {
                 TxtUsuario.Text = "";
             }
@@ -110,7 +103,7 @@ namespace GestorDePacientes
 
         private void TxtUsuario_Leave(object sender, EventArgs e)
         {
-            if (TxtUsuario.Text=="")
+            if (TxtUsuario.Text == "")
             {
                 TxtUsuario.Text = "Ingrese Usuario";
             }
@@ -118,7 +111,7 @@ namespace GestorDePacientes
         //Contrasena
         private void TxtContrasena_Click(object sender, EventArgs e)
         {
-            if (TxtContrasena.Text== "Ingrese Contraseña")
+            if (TxtContrasena.Text == "Ingrese Contraseña")
             {
                 TxtContrasena.Text = "";
             }
@@ -126,7 +119,7 @@ namespace GestorDePacientes
 
         private void TxtContrasena_Leave(object sender, EventArgs e)
         {
-            if (TxtContrasena.Text=="")
+            if (TxtContrasena.Text == "")
             {
                 TxtContrasena.Text = "Ingrese Contraseña";
             }
@@ -134,7 +127,7 @@ namespace GestorDePacientes
         //confiContrasena
         private void TxtConfiContrasena_Click(object sender, EventArgs e)
         {
-            if (TxtConfiContrasena.Text== "Confirme Contraseña")
+            if (TxtConfiContrasena.Text == "Confirme Contraseña")
             {
                 TxtConfiContrasena.Text = "";
             }
@@ -142,7 +135,7 @@ namespace GestorDePacientes
 
         private void TxtConfiContrasena_Leave(object sender, EventArgs e)
         {
-            if (TxtConfiContrasena.Text=="")
+            if (TxtConfiContrasena.Text == "")
             {
                 TxtConfiContrasena.Text = "Confirme Contraseña";
             }
@@ -156,7 +149,6 @@ namespace GestorDePacientes
 
         private void CbxRol_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             tipoUser = CbxRol.SelectedIndex;
         }
         #endregion
@@ -170,53 +162,58 @@ namespace GestorDePacientes
             TxtConfiContrasena.Text = "Confirme Contraseña";
             TxtCorreo.Text = "Ingrese un Correo";
             TxtNombre.Text = "Ingrese Nombre";
-            
+            CbxRol.Text = "Seleccione una opcion";
         }
 
         public void ValidAdd()
         {
             isValid = true;
-            if (TxtNombre.Text == "Ingrese Nombre")
+            if (TxtNombre.Text == "Ingrese Nombre"|| TxtNombre.Text =="")
             {
                 MessageBox.Show("Debe ingresar un Nombre");
                 isValid = false;
 
             }
-            else if (TxtApellido.Text == "Ingrese Apellido")
+            else if (TxtApellido.Text == "Ingrese Apellido"|| TxtApellido.Text =="")
             {
                 MessageBox.Show("Debe ingresar un Apellido");
                 isValid = false;
             }
-            else if (TxtCorreo.Text == "Ingrese un Correo")
+            else if (TxtCorreo.Text == "Ingrese un Correo"|| TxtCorreo.Text =="")
             {
                 MessageBox.Show("Debe ingresar un Correo");
                 isValid = false;
             }
-            else if (TxtUsuario.Text == "Ingrese Usuario")
+            else if (TxtUsuario.Text == "Ingrese Usuario"|| TxtUsuario.Text =="")
             {
                 MessageBox.Show("Debe ingresar un  Nombre de usuario");
                 isValid = false;
             }
-            else if (TxtContrasena.Text == "Ingrese Contraseña")
+            else if (TxtContrasena.Text == "Ingrese Contraseña" || TxtContrasena.Text =="")
             {
                 MessageBox.Show("Debe ingresar una contraseña");
                 isValid = false;
             }
-            else if (TxtConfiContrasena.Text == "Confirme Contraseña")
+            else if (TxtConfiContrasena.Text == "Confirme Contraseña"|| TxtConfiContrasena.Text =="")
             {
                 MessageBox.Show("Debe confirmar la contraseña");
                 isValid = false;
             }
-            else if (CbxRol.Text == "Seleccione una opcion")
+            else if (TxtContrasena.Text != TxtConfiContrasena.Text)
+            {
+                MessageBox.Show("Debe ingresar una misma contraseña en ambos campos");
+                isValid = false;
+            }
+            else if (CbxRol.Text == "Seleccione una opcion"|| CbxRol.Text =="")
             {
                 MessageBox.Show("Debe seleccionar un Rol");
                 isValid = false;
             }
 
             if (isValid)
-            {  
-                DataBase.Modelos.Usuario usuario = new DataBase.Modelos.Usuario(TxtNombre.Text,TxtApellido.Text,
-                    TxtCorreo.Text,TxtUsuario.Text,TxtContrasena.Text, tipoUser);
+            {
+                DataBase.Modelos.Usuario usuario = new DataBase.Modelos.Usuario(TxtNombre.Text, TxtApellido.Text,
+                    TxtCorreo.Text, TxtUsuario.Text, TxtContrasena.Text, tipoUser);
 
                 if (Usuarioid > 0)
                 {
@@ -253,24 +250,21 @@ namespace GestorDePacientes
 
 
         }
-        
-        public void LoadTxt()
+
+        public void LoadTxtUsuario()
         {
-            if (Dgv.Instancia.Filaceleccionada !=null)
-            {
-                Usuarioid = Convert.ToInt16(Dgv.Instancia.Filaceleccionada.Cells[0].Value);
-                TxtNombre.Text = Dgv.Instancia.Filaceleccionada.Cells[1].Value.ToString();
-                TxtApellido.Text= Dgv.Instancia.Filaceleccionada.Cells[2].Value.ToString();
-                TxtCorreo.Text= Dgv.Instancia.Filaceleccionada.Cells[3].Value.ToString();
-                TxtUsuario.Text= Dgv.Instancia.Filaceleccionada.Cells[4].Value.ToString();
-                TxtContrasena.Text= Dgv.Instancia.Filaceleccionada.Cells[5].Value.ToString();
-                CbxRol.Text= Dgv.Instancia.Filaceleccionada.Cells[6].Value.ToString();
-                Dgv.Instancia.Filaceleccionada = null;
-            }
+            Usuarioid = Convert.ToInt32(Dgv.Instancia.Filaceleccionada.Cells[0].Value);
+            TxtNombre.Text = Dgv.Instancia.Filaceleccionada.Cells[1].Value.ToString();
+            TxtApellido.Text = Dgv.Instancia.Filaceleccionada.Cells[2].Value.ToString();
+            TxtCorreo.Text = Dgv.Instancia.Filaceleccionada.Cells[3].Value.ToString();
+            TxtUsuario.Text = Dgv.Instancia.Filaceleccionada.Cells[4].Value.ToString();
+            //TxtContrasena.Text = Dgv.Instancia.Filaceleccionada.Cells[5].Value.ToString();
+            CbxRol.Text= Dgv.Instancia.Filaceleccionada.Cells[5].Value.ToString();
+            Dgv.Instancia.Filaceleccionada = null;
         }
-        
+
         #endregion
 
-       
+
     }
 }

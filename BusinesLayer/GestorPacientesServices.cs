@@ -32,7 +32,6 @@ namespace BusinesLayer
 
         public bool EditarUsuario(Usuario usuario, int idUsuario)
         {
-
             return repositorio.EditarUsuario(usuario, idUsuario);
         }
 
@@ -96,6 +95,24 @@ namespace BusinesLayer
         }
         #endregion
 
+        #region Puebas
+        public bool EliminarPrueva(int id)
+        {
+            return repositorio.EliminarPrueba(id);
+        }
+        #endregion
+
+        #region Foto
+
+        public bool SavePhoto(int id, string destination)
+        {
+            return repositorio.SavePhoto(id, destination);
+        }
+        public int GetLastId()
+        {
+            return repositorio.GetLastId();
+        }
+        #endregion
 
         public DataTable GetAllPrueba()
         {

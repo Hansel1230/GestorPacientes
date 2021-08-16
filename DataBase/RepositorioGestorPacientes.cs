@@ -250,8 +250,9 @@ namespace DataBase
         #region getData
         public DataTable GetAllUsuario()
         {
-            SqlDataAdapter query = new SqlDataAdapter("select Nombre,Apellido,Correo,Nombre_Usuario,Contrasena," +
-                "Tipo_Usuario from Usuarios", _Connection);
+            //SqlDataAdapter query = new SqlDataAdapter("Select * from Usuarios", _Connection);
+            SqlDataAdapter query = new SqlDataAdapter("select id,Nombre,Apellido,Correo,Nombre_Usuario," +
+            "CASE WHEN Tipo_Usuario = 1 THEN 'Administrador' ELSE 'Usuario' END AS 'Tipo de Usuario' from Usuarios" , _Connection);
 
             return LoadData(query);
         }
@@ -333,6 +334,45 @@ namespace DataBase
             {
                 return null;
             }
+
+        }
+        #endregion
+
+        #region Foto
+
+        public bool SavePhoto(int id, string destination)
+        {
+
+            SqlCommand command = new SqlCommand("update Personas set FotoPerfil=@foto where Id = @id",_Connection);
+
+            command.Parameters.AddWithValue("@id", id);
+            command.Parameters.AddWithValue("@foto", destination);
+
+            return ExecuteDml(command);
+        }
+
+        public int GetLastId()
+        {
+            int lastId = 0;
+
+            _Connection.Open();
+
+            SqlCommand command = new SqlCommand("select max(Id) as Id from Personas", _Connection);
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                lastId = reader.IsDBNull(0) ? 0 : reader.GetInt32(0);
+            }
+
+            reader.Close();
+            reader.Dispose();
+
+
+            _Connection.Close();
+
+            return lastId;
 
         }
         #endregion

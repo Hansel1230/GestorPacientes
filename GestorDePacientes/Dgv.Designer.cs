@@ -97,14 +97,22 @@
             // 
             this.DgvData.AllowUserToAddRows = false;
             this.DgvData.AllowUserToDeleteRows = false;
+            this.DgvData.AllowUserToResizeColumns = false;
+            this.DgvData.AllowUserToResizeRows = false;
+            this.DgvData.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.DgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DgvData.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
+            this.DgvData.GridColor = System.Drawing.SystemColors.Control;
             this.DgvData.Location = new System.Drawing.Point(45, 91);
+            this.DgvData.MultiSelect = false;
             this.DgvData.Name = "DgvData";
+            this.DgvData.ReadOnly = true;
+            this.DgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvData.Size = new System.Drawing.Size(449, 273);
             this.DgvData.TabIndex = 1;
             this.DgvData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvData_CellClick);
+            this.DgvData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvData_CellContentClick);
             // 
             // BtnAgregar
             // 

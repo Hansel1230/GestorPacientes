@@ -1,8 +1,12 @@
-﻿using BusinesLayer;
+﻿#region Dependencias
+
+using BusinesLayer;
 using System;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+
+#endregion
 
 namespace GestorDePacientes
 {
@@ -12,11 +16,13 @@ namespace GestorDePacientes
         public static Dgv Instancia { get; } = new Dgv();
         #endregion
 
+        #region Props
         private GestorPacientesServices services;
 
         public DataGridViewRow Filaceleccionada = null;
 
         private int index = 0;
+        #endregion
 
         #region Constructor
         public Dgv()
@@ -37,6 +43,7 @@ namespace GestorDePacientes
         private void Dgv_Load(object sender, EventArgs e)
         {
             deselect();
+            LoadData();
         }
 
         private void atrasToolStripMenuItem_Click(object sender, EventArgs e)
@@ -58,7 +65,7 @@ namespace GestorDePacientes
 
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
-
+            validDelect();
         }
 
         private void BtnDeselect_Click(object sender, EventArgs e)
@@ -79,7 +86,14 @@ namespace GestorDePacientes
                 BtnEditar.Visible = true;
                 BtnEliminar.Visible = true;
                 BtnDeselect.Visible = true;
+
+                index = Convert.ToInt32(DgvData.Rows[e.RowIndex].Cells[0].Value.ToString());
             }
+        }
+
+        private void DgvData_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
         #endregion
 
@@ -90,6 +104,94 @@ namespace GestorDePacientes
             BtnEditar.Visible = false;
             BtnEliminar.Visible = false;
             BtnDeselect.Visible = false;
+            DgvData.ClearSelection();
+            //index = null;
+        }
+
+        public void validDelect()
+        {
+            if (MenuHome.Instancia.TipoMant == "Usuario")
+            {
+                DialogResult response = MessageBox.Show("Esta seguro de eliminar este " +
+                    "Usuario?", "Advertencia", MessageBoxButtons.OKCancel);
+                if (response == DialogResult.OK)
+                {
+                    bool result = services.EliminarUsuario(index);
+
+                    if (result)
+                    {
+                        MessageBox.Show("Se elimino con exito!!", "succes");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Se produjo un error", "Bad News");
+                    }
+                }
+            }
+            else if (MenuHome.Instancia.TipoMant == "Medico")
+            {
+                DialogResult response = MessageBox.Show("Esta seguro de eliminar este " +
+                    "Medico?", "Advertencia", MessageBoxButtons.OKCancel);
+                if (response == DialogResult.OK)
+                {
+                    bool result = services.EliminarMedico(index);
+
+                    if (result)
+                    {
+                        MessageBox.Show("Se elimino con exito!!", "succes");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Se produjo un error", "Bad News");
+                    }
+                }
+            }
+            else if (MenuHome.Instancia.TipoMant == "PrLabo")
+            {
+                DialogResult response = MessageBox.Show("Esta seguro de eliminar esta " +
+                    "Prueba?", "Advertencia", MessageBoxButtons.OKCancel);
+                if (response == DialogResult.OK)
+                {
+                    bool result = services.EliminarPrueva(index);
+
+                    if (result)
+                    {
+                        MessageBox.Show("Se elimino con exito!!", "succes");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Se produjo un error", "Bad News");
+                    }
+                }
+            }
+            else if (MenuHome.Instancia.TipoMant == "Paciente")
+            {
+                DialogResult response = MessageBox.Show("Esta seguro de eliminar este " +
+                    "Paciente?", "Advertencia", MessageBoxButtons.OKCancel);
+                if (response == DialogResult.OK)
+                {
+                    bool result = services.EliminarPaciente(index);
+
+                    if (result)
+                    {
+                        MessageBox.Show("Se elimino con exito!!", "succes");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Se produjo un error", "Bad News");
+                    }
+                }
+            }
+            /*else if (MenuHome.Instancia.TipoMant == "Cita")
+            {
+
+            }*/
+            else if (MenuHome.Instancia.TipoMant == "ResulPrLabo")
+            {
+
+            }
+            LoadData();
+            deselect();
         }
 
         public void validAdd()
@@ -98,7 +200,7 @@ namespace GestorDePacientes
             {
                 if (Filaceleccionada != null)
                 {
-                    MantUsuario.Instancia.LoadTxt();
+                    MantUsuario.Instancia.LoadTxtUsuario();
                 }
                 MantUsuario.Instancia.Show();
                 Instancia.Hide();
@@ -108,7 +210,7 @@ namespace GestorDePacientes
             {
                 if (Filaceleccionada != null)
                 {
-                    MantUsuario.Instancia.LoadTxt();
+                   // MantUsuario.Instancia.LoadTxt();
                 }
                 MAntMedico.Instancia.Show();
                 Instancia.Hide();
@@ -117,7 +219,7 @@ namespace GestorDePacientes
             {
                 if (Filaceleccionada != null)
                 {
-                    MantUsuario.Instancia.LoadTxt();
+                   // MantUsuario.Instancia.LoadTxt();
                 }
                 MantPrueva.Instancia.Show();
                 Instancia.Hide();
@@ -126,7 +228,7 @@ namespace GestorDePacientes
             {
                 if (Filaceleccionada != null)
                 {
-                    MantUsuario.Instancia.LoadTxt();
+                   // MantUsuario.Instancia.LoadTxt();
                 }
                 MantPAcientes.Instancia.Show();
                 Instancia.Hide();
@@ -135,7 +237,7 @@ namespace GestorDePacientes
             {
                 if (Filaceleccionada != null)
                 {
-                    MantUsuario.Instancia.LoadTxt();
+                   // MantUsuario.Instancia.LoadTxt();
                 }
                 //MantCita.Instancia.Show();
                 Instancia.Hide();
@@ -144,7 +246,7 @@ namespace GestorDePacientes
             {
                 if (Filaceleccionada != null)
                 {
-                    MantUsuario.Instancia.LoadTxt();
+                   // MantUsuario.Instancia.LoadTxt();
                 }
 
                 //ResultPruevaLabo.Instancia.Show();
@@ -156,18 +258,17 @@ namespace GestorDePacientes
         {
             if (MenuHome.Instancia.TipoMant== "Usuario")
             {
-                DgvData.DataSource = services.GetAllUsuario();
+                DgvData.DataSource = services.GetAllUsuario();                
             }
 
             else if (MenuHome.Instancia.TipoMant == "Medico")
             {
-                DgvData.DataSource = services.GetAllMedico();
+                DgvData.DataSource = services.GetAllMedico();                
             }
 
             else if (MenuHome.Instancia.TipoMant == "PrLabo")
             {
-                DgvData.DataSource = services.GetAllPrueba
-();
+                DgvData.DataSource = services.GetAllPrueba();
             }
 
             else if (MenuHome.Instancia.TipoMant == "Paciente")
@@ -184,10 +285,8 @@ namespace GestorDePacientes
             {
                 DgvData.DataSource = services.GetAllResultado();
             }
+            DgvData.ClearSelection();
         }
-        
         #endregion
-
-        
     }
 }
