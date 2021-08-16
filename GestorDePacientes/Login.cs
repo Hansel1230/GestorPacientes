@@ -96,6 +96,8 @@ namespace GestorDePacientes
             if (TxtContrasena.Text== "Ingrese Contraseña")
             {
                 TxtContrasena.Text = "";
+                TxtContrasena.PasswordChar = '*';
+                TxtContrasena.UseSystemPasswordChar = true;
             }
         }
 
@@ -103,7 +105,9 @@ namespace GestorDePacientes
         {
             if (TxtContrasena.Text=="")
             {
+                TxtContrasena.UseSystemPasswordChar = false;
                 TxtContrasena.Text = "Ingrese Contraseña";
+
             }
         }
 
@@ -120,8 +124,12 @@ namespace GestorDePacientes
             TxtUsuario.Text = "Ingrese usuario";
             TxtContrasena.Text = "Ingrese Contraseña";
         }
+
         #endregion
 
-        
+        private void TxtContrasena_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

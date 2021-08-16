@@ -114,6 +114,8 @@ namespace BusinesLayer
         }
         #endregion
 
+        #region GetAllLossquefaltan
+
         public DataTable GetAllPrueba()
         {
             return repositorio.GetAllPrueba();
@@ -128,6 +130,6 @@ namespace BusinesLayer
         {
             return repositorio.GetAllCita();
         }
-
+        #endregion
     }
 }

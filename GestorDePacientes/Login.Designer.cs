@@ -124,6 +124,7 @@
             this.TxtContrasena.Size = new System.Drawing.Size(202, 20);
             this.TxtContrasena.TabIndex = 5;
             this.TxtContrasena.Click += new System.EventHandler(this.TxtContrasena_Click);
+            this.TxtContrasena.TextChanged += new System.EventHandler(this.TxtContrasena_TextChanged);
             this.TxtContrasena.Leave += new System.EventHandler(this.TxtContrasena_Leave);
             // 
             // tableLayoutPanel2
@@ -136,7 +137,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(202, 31);
             this.tableLayoutPanel2.TabIndex = 7;
             // 
@@ -167,7 +168,7 @@
             this.menuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.salirToolStripMenuItem});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
-            this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 19);
             this.menuToolStripMenuItem.Text = "Menu";
             // 
             // salirToolStripMenuItem

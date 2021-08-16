@@ -47,13 +47,12 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.774194F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.3871F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.83871F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1.290323F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 97.25806F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1.612903F));
             this.tableLayoutPanel1.Controls.Add(this.menuStrip1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.DgvData, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.BtnAgregar, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.BtnDeselect, 2, 4);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -104,12 +103,12 @@
             this.DgvData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DgvData.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
             this.DgvData.GridColor = System.Drawing.SystemColors.Control;
-            this.DgvData.Location = new System.Drawing.Point(45, 91);
+            this.DgvData.Location = new System.Drawing.Point(10, 91);
             this.DgvData.MultiSelect = false;
             this.DgvData.Name = "DgvData";
             this.DgvData.ReadOnly = true;
             this.DgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgvData.Size = new System.Drawing.Size(449, 273);
+            this.DgvData.Size = new System.Drawing.Size(596, 273);
             this.DgvData.TabIndex = 1;
             this.DgvData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvData_CellClick);
             this.DgvData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvData_CellContentClick);
@@ -117,9 +116,9 @@
             // BtnAgregar
             // 
             this.BtnAgregar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BtnAgregar.Location = new System.Drawing.Point(45, 45);
+            this.BtnAgregar.Location = new System.Drawing.Point(10, 45);
             this.BtnAgregar.Name = "BtnAgregar";
-            this.BtnAgregar.Size = new System.Drawing.Size(449, 40);
+            this.BtnAgregar.Size = new System.Drawing.Size(596, 40);
             this.BtnAgregar.TabIndex = 2;
             this.BtnAgregar.Text = "Agregar";
             this.BtnAgregar.UseVisualStyleBackColor = true;
@@ -127,10 +126,10 @@
             // 
             // BtnDeselect
             // 
-            this.BtnDeselect.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BtnDeselect.Location = new System.Drawing.Point(500, 370);
+            this.BtnDeselect.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnDeselect.Location = new System.Drawing.Point(399, 3);
             this.BtnDeselect.Name = "BtnDeselect";
-            this.BtnDeselect.Size = new System.Drawing.Size(117, 54);
+            this.BtnDeselect.Size = new System.Drawing.Size(194, 48);
             this.BtnDeselect.TabIndex = 3;
             this.BtnDeselect.Text = "Deseleccionar";
             this.BtnDeselect.UseVisualStyleBackColor = true;
@@ -139,17 +138,19 @@
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnCount = 3;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel2.Controls.Add(this.BtnEditar, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.BtnEliminar, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.BtnDeselect, 2, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(45, 370);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(10, 370);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(449, 54);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(596, 54);
             this.tableLayoutPanel2.TabIndex = 4;
             // 
             // BtnEditar
@@ -157,7 +158,7 @@
             this.BtnEditar.Dock = System.Windows.Forms.DockStyle.Top;
             this.BtnEditar.Location = new System.Drawing.Point(3, 3);
             this.BtnEditar.Name = "BtnEditar";
-            this.BtnEditar.Size = new System.Drawing.Size(218, 48);
+            this.BtnEditar.Size = new System.Drawing.Size(192, 48);
             this.BtnEditar.TabIndex = 0;
             this.BtnEditar.Text = "Editar";
             this.BtnEditar.UseVisualStyleBackColor = true;
@@ -166,10 +167,10 @@
             // 
             // BtnEliminar
             // 
-            this.BtnEliminar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BtnEliminar.Location = new System.Drawing.Point(227, 3);
+            this.BtnEliminar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnEliminar.Location = new System.Drawing.Point(201, 3);
             this.BtnEliminar.Name = "BtnEliminar";
-            this.BtnEliminar.Size = new System.Drawing.Size(219, 48);
+            this.BtnEliminar.Size = new System.Drawing.Size(192, 48);
             this.BtnEliminar.TabIndex = 1;
             this.BtnEliminar.Text = "Eliminar";
             this.BtnEliminar.UseVisualStyleBackColor = true;

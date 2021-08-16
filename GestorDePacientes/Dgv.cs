@@ -54,18 +54,31 @@ namespace GestorDePacientes
 
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
-            validAdd();
+            
+            if (Filaceleccionada == null)
+            {
+                validAdd();
+                deselect();
+            }
+            else
+            {
+                MessageBox.Show("Primero Debe deseleccionar","Error");
+                deselect();
+            }
         }
 
         private void BtnEditar_Click(object sender, EventArgs e)
         {
            
-            validAdd();           
+            validAdd();
+            deselect();
         }
 
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
+            
             validDelect();
+            deselect();
         }
 
         private void BtnDeselect_Click(object sender, EventArgs e)
@@ -83,11 +96,13 @@ namespace GestorDePacientes
             if (e.RowIndex >= 0)
             {
                 Filaceleccionada = DgvData.Rows[e.RowIndex];
+                index = Convert.ToInt32(Filaceleccionada.Cells[0].Value.ToString());
                 BtnEditar.Visible = true;
                 BtnEliminar.Visible = true;
                 BtnDeselect.Visible = true;
 
-                index = Convert.ToInt32(DgvData.Rows[e.RowIndex].Cells[0].Value.ToString());
+               
+               // MAntMedico.Instancia.LoadTxtMedico();
             }
         }
 
@@ -101,6 +116,7 @@ namespace GestorDePacientes
 
         public void deselect()
         {
+            Filaceleccionada = null;
             BtnEditar.Visible = false;
             BtnEliminar.Visible = false;
             BtnDeselect.Visible = false;
@@ -128,6 +144,7 @@ namespace GestorDePacientes
                     }
                 }
             }
+
             else if (MenuHome.Instancia.TipoMant == "Medico")
             {
                 DialogResult response = MessageBox.Show("Esta seguro de eliminar este " +
@@ -202,16 +219,25 @@ namespace GestorDePacientes
                 {
                     MantUsuario.Instancia.LoadTxtUsuario();
                 }
+                else
+                {
+                    MantUsuario.Instancia.Fultxt();
+                }
+
                 MantUsuario.Instancia.Show();
                 Instancia.Hide();
-
             }
             else if (MenuHome.Instancia.TipoMant == "Medico")
             {
                 if (Filaceleccionada != null)
                 {
-                   // MantUsuario.Instancia.LoadTxt();
+                    MAntMedico.Instancia.LoadTxtMedico();
                 }
+                else
+                {
+                    MAntMedico.Instancia.Fultxt();
+                }
+
                 MAntMedico.Instancia.Show();
                 Instancia.Hide();
             }
@@ -219,8 +245,9 @@ namespace GestorDePacientes
             {
                 if (Filaceleccionada != null)
                 {
-                   // MantUsuario.Instancia.LoadTxt();
+                    // MantUsuario.Instancia.LoadTxt();
                 }
+                MantPrueva.Instancia.fulltxt();
                 MantPrueva.Instancia.Show();
                 Instancia.Hide();
             }
@@ -228,7 +255,7 @@ namespace GestorDePacientes
             {
                 if (Filaceleccionada != null)
                 {
-                   // MantUsuario.Instancia.LoadTxt();
+                    // MantUsuario.Instancia.LoadTxt();
                 }
                 MantPAcientes.Instancia.Show();
                 Instancia.Hide();
@@ -237,7 +264,7 @@ namespace GestorDePacientes
             {
                 if (Filaceleccionada != null)
                 {
-                   // MantUsuario.Instancia.LoadTxt();
+                    // MantUsuario.Instancia.LoadTxt();
                 }
                 //MantCita.Instancia.Show();
                 Instancia.Hide();
@@ -246,13 +273,17 @@ namespace GestorDePacientes
             {
                 if (Filaceleccionada != null)
                 {
-                   // MantUsuario.Instancia.LoadTxt();
+                    // MantUsuario.Instancia.LoadTxt();
                 }
 
                 //ResultPruevaLabo.Instancia.Show();
                 Instancia.Hide();
             }
+            LoadData();
+            deselect();
+
         }
+        
 
         public void LoadData()
         {

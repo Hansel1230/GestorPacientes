@@ -1,4 +1,5 @@
 ﻿using BusinesLayer;
+using System;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.IO;
@@ -19,7 +20,7 @@ namespace GestorDePacientes
 
         public string _filename;
 
-        public int? index;
+        public int index { get; set; }
 
         public int Medicoid { get; set; }
 
@@ -34,13 +35,14 @@ namespace GestorDePacientes
             services = new GestorPacientesServices(connection);
             _filename = "";
             index=0;
+            Medicoid = 0;
         }
 
         #region Eventos 
 
         private void MAntMedico_Load(object sender, System.EventArgs e)
         {
-            Fultxt();
+            //Fultxt();
         }
 
         private void BtnAgregar_Click(object sender, System.EventArgs e)
@@ -137,6 +139,11 @@ namespace GestorDePacientes
         {
             AddFoto();
         }
+
+        private void atrasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Dgv.Instancia.Show();
+        }
         #endregion
 
         #region Metodos 
@@ -180,8 +187,9 @@ namespace GestorDePacientes
             }
             if (isValid)
             {
+                //SavePhoto();
                 DataBase.Modelos.Medico medico = new DataBase.Modelos.Medico(TxtNombre.Text, TxtApellido.Text,
-                    TxtCorreo.Text, TxtCedula.Text, TxtTelefono.Text, TxtTelefono.Text);
+                    TxtCorreo.Text, TxtTelefono.Text, TxtCedula.Text,  TxtTelefono.Text);
                 //se repite Txttelefono.Text para evitar el error, en su lugar debe ir el string "foto"
 
                 if (Medicoid > 0)
@@ -193,6 +201,7 @@ namespace GestorDePacientes
                 {
                     services.AgregarMedico(medico);
                 }
+                Dgv.Instancia.LoadData();
                 Dgv.Instancia.Show();
                 Instancia.Hide();
             }
@@ -209,13 +218,10 @@ namespace GestorDePacientes
                 _filename=file;
             }
         }
-
         
         private void SavePhoto()
-        {
-
-            
-             int id=id == null ? services.GetLastId() : index);
+        {            
+             int id=Medicoid == 0 ? services.GetLastId() : Medicoid;
 
             string directory = @"Images\Medico\" + id + "\\";
 
@@ -238,9 +244,19 @@ namespace GestorDePacientes
                 Directory.CreateDirectory(directory);
             }
         }
-        
+
         #endregion
 
-
+        public void LoadTxtMedico()
+        {
+            Medicoid = Convert.ToInt32(Dgv.Instancia.Filaceleccionada.Cells[0].Value);
+            TxtNombre.Text = Dgv.Instancia.Filaceleccionada.Cells[1].Value.ToString();
+            TxtApellido.Text = Dgv.Instancia.Filaceleccionada.Cells[2].Value.ToString();
+            TxtCorreo.Text = Dgv.Instancia.Filaceleccionada.Cells[3].Value.ToString();
+            TxtTelefono.Text = Dgv.Instancia.Filaceleccionada.Cells[3].Value.ToString();
+            TxtCedula.Text = Dgv.Instancia.Filaceleccionada.Cells[3].Value.ToString();
+            //txt.Text = Dgv.Instancia.Filaceleccionada.Cells[3].Value.ToString();
+            Dgv.Instancia.Filaceleccionada = null;
+        }        
     }
 }

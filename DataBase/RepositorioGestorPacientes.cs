@@ -118,11 +118,12 @@ namespace DataBase
         public bool EditarMedico(Medico item, int idMedico)
         {
             SqlCommand command = new SqlCommand("update Medicos set Nombre=@nombre,Apellido=@apellido,Correo=@correo," +
-                "Cedula=@cedula,Foto=@foto where id=@id", _Connection);
+                "Telefono=@telefono,Cedula=@cedula,Foto=@foto where id=@id", _Connection);
 
             command.Parameters.AddWithValue("@nombre", item.Nombre);
             command.Parameters.AddWithValue("@apellido", item.Apellido);
             command.Parameters.AddWithValue("@correo", item.Correo);
+            command.Parameters.AddWithValue("@telefono", item.Telefono);
             command.Parameters.AddWithValue("@cedula", item.Cedula);
             command.Parameters.AddWithValue("@foto", item.Foto);
             command.Parameters.AddWithValue("@id", idMedico);
@@ -247,7 +248,7 @@ namespace DataBase
         }
         #endregion
 
-        #region getData
+        #region getAllData
         public DataTable GetAllUsuario()
         {
             //SqlDataAdapter query = new SqlDataAdapter("Select * from Usuarios", _Connection);
@@ -259,7 +260,7 @@ namespace DataBase
 
         public DataTable GetAllMedico()
         {
-            SqlDataAdapter query = new SqlDataAdapter("select Nombre,Apellido,Correo,Telefono,Cedula," +
+            SqlDataAdapter query = new SqlDataAdapter("select id,Nombre,Apellido,Correo,Telefono,Cedula," +
                 "Foto from Medicos", _Connection);
 
             return LoadData(query);
@@ -357,7 +358,7 @@ namespace DataBase
 
             _Connection.Open();
 
-            SqlCommand command = new SqlCommand("select max(Id) as Id from Personas", _Connection);
+            SqlCommand command = new SqlCommand("select max(id) as Id from Medicos", _Connection);
 
             SqlDataReader reader = command.ExecuteReader();
 

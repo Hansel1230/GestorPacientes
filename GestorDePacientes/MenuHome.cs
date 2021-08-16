@@ -57,9 +57,11 @@ namespace GestorDePacientes
         {
             if (HomeValid == 1)
             {
+                TipoMant = "Medico";
+                Dgv.Instancia.LoadData();
                 Dgv.Instancia.Show();
                 Instancia.Hide();
-                TipoMant = "Medico";
+                
             }
             else
             {

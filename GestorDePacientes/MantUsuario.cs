@@ -17,7 +17,7 @@ namespace GestorDePacientes
 
         bool isValid;
         public int Usuarioid { get; set; } = 0;
-        public int tipoUser { get; set; } = 0;
+        public int tipoUser { get; set; }
 
         public MantUsuario()
         {
@@ -149,7 +149,7 @@ namespace GestorDePacientes
 
         private void CbxRol_SelectedIndexChanged(object sender, EventArgs e)
         {
-            tipoUser = CbxRol.SelectedIndex;
+            tipoUser = CbxRol.SelectedIndex -1;
         }
         #endregion
 
@@ -162,7 +162,7 @@ namespace GestorDePacientes
             TxtConfiContrasena.Text = "Confirme Contraseña";
             TxtCorreo.Text = "Ingrese un Correo";
             TxtNombre.Text = "Ingrese Nombre";
-            CbxRol.Text = "Seleccione una opcion";
+            loadCombobox();
         }
 
         public void ValidAdd()
@@ -189,7 +189,7 @@ namespace GestorDePacientes
                 MessageBox.Show("Debe ingresar un  Nombre de usuario");
                 isValid = false;
             }
-            else if (TxtContrasena.Text == "Ingrese Contraseña" || TxtContrasena.Text =="")
+            else if (TxtContrasena.Text == "Ingrese Contraseña" || TxtContrasena.Text ==""|| TxtContrasena.Text == "Ingrese Nueva Contraseña")
             {
                 MessageBox.Show("Debe ingresar una contraseña");
                 isValid = false;
@@ -203,13 +203,14 @@ namespace GestorDePacientes
             {
                 MessageBox.Show("Debe ingresar una misma contraseña en ambos campos");
                 isValid = false;
-            }
-            else if (CbxRol.Text == "Seleccione una opcion"|| CbxRol.Text =="")
+           }
+             else if (CbxRol.SelectedIndex == 0)
             {
                 MessageBox.Show("Debe seleccionar un Rol");
                 isValid = false;
             }
-
+            
+            
             if (isValid)
             {
                 DataBase.Modelos.Usuario usuario = new DataBase.Modelos.Usuario(TxtNombre.Text, TxtApellido.Text,
@@ -224,6 +225,7 @@ namespace GestorDePacientes
                 {
                     services.AgregarUsuario(usuario);
                 }
+                Dgv.Instancia.LoadData();
                 Dgv.Instancia.Show();
                 Instancia.Hide();
             }
@@ -232,20 +234,24 @@ namespace GestorDePacientes
         private void loadCombobox()
         {
 
+            CbxRol.Items.Clear();
+
             ComboBoxItem OpcionDefecto = new ComboBoxItem();
             OpcionDefecto.Text = "Seleccione un rol";
             OpcionDefecto.Value = null;
-
-            ComboBoxItem Administrador = new ComboBoxItem();
-            Administrador.Text = "Administrador";
-            Administrador.Value = 1;
+            CbxRol.Items.Add(OpcionDefecto);
 
             ComboBoxItem Usuario = new ComboBoxItem();
             Usuario.Text = "Usuario";
             Usuario.Value = 0;
-
-            CbxRol.Items.Add(Administrador);
             CbxRol.Items.Add(Usuario);
+
+            ComboBoxItem Administrador = new ComboBoxItem();
+            Administrador.Text = "Administrador";
+            Administrador.Value = 1;
+            CbxRol.Items.Add(Administrador);
+
+
             CbxRol.SelectedItem = OpcionDefecto;
 
 
@@ -258,8 +264,10 @@ namespace GestorDePacientes
             TxtApellido.Text = Dgv.Instancia.Filaceleccionada.Cells[2].Value.ToString();
             TxtCorreo.Text = Dgv.Instancia.Filaceleccionada.Cells[3].Value.ToString();
             TxtUsuario.Text = Dgv.Instancia.Filaceleccionada.Cells[4].Value.ToString();
-            //TxtContrasena.Text = Dgv.Instancia.Filaceleccionada.Cells[5].Value.ToString();
-            CbxRol.Text= Dgv.Instancia.Filaceleccionada.Cells[5].Value.ToString();
+            TxtContrasena.Text ="Ingrese Nueva Contraseña";
+            TxtConfiContrasena.Text = "Confirme Contraseña";
+            //CbxRol.Text= Dgv.Instancia.Filaceleccionada.Cells[5].Value.ToString();
+            loadCombobox();
             Dgv.Instancia.Filaceleccionada = null;
         }
 
