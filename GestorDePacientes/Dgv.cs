@@ -22,6 +22,7 @@ namespace GestorDePacientes
         public DataGridViewRow Filaceleccionada = null;
 
         private int index = 0;
+        public int idPrueba { get; set; }
         #endregion
 
         #region Constructor
@@ -95,14 +96,22 @@ namespace GestorDePacientes
         {
             if (e.RowIndex >= 0)
             {
-                Filaceleccionada = DgvData.Rows[e.RowIndex];
-                index = Convert.ToInt32(Filaceleccionada.Cells[0].Value.ToString());
-                BtnEditar.Visible = true;
-                BtnEliminar.Visible = true;
-                BtnDeselect.Visible = true;
-
-               
-               // MAntMedico.Instancia.LoadTxtMedico();
+                //problema con la conversion em index cuando se trata del mantenimiento de prueba
+                //cree la propiedad idprueba como solucion, pero explota a la hora de editar ):
+                //arreglar prueba. hasta en momento solo obtengo los registros
+                
+                if (MenuHome.Instancia.TipoMant == "PrLabo")
+                {
+                    idPrueba = Convert.ToInt32(e.RowIndex.ToString());
+                    Filaceleccionada = DgvData.Rows[e.RowIndex];
+                    BtnVisible();
+                }
+                else
+                {
+                    Filaceleccionada = DgvData.Rows[e.RowIndex];
+                    index = Convert.ToInt32(Filaceleccionada.Cells[0].Value.ToString());
+                    BtnVisible();
+                }
             }
         }
 
@@ -169,7 +178,7 @@ namespace GestorDePacientes
                     "Prueba?", "Advertencia", MessageBoxButtons.OKCancel);
                 if (response == DialogResult.OK)
                 {
-                    bool result = services.EliminarPrueva(index);
+                    bool result = services.EliminarPrueva(idPrueba);
 
                     if (result)
                     {
@@ -245,7 +254,7 @@ namespace GestorDePacientes
             {
                 if (Filaceleccionada != null)
                 {
-                    // MantUsuario.Instancia.LoadTxt();
+                    MantPrueva.Instancia.LoadTxtPrueba();
                 }
                 else
                 {
@@ -291,7 +300,12 @@ namespace GestorDePacientes
 
         }
         
-
+        public void BtnVisible()
+        {
+            BtnEditar.Visible = true;
+            BtnEliminar.Visible = true;
+            BtnDeselect.Visible = true;
+        }
         public void LoadData()
         {
             if (MenuHome.Instancia.TipoMant== "Usuario")

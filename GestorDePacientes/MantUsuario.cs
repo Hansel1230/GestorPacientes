@@ -111,7 +111,7 @@ namespace GestorDePacientes
         //Contrasena
         private void TxtContrasena_Click(object sender, EventArgs e)
         {
-            if (TxtContrasena.Text == "Ingrese Contraseña")
+            if (TxtContrasena.Text == "Ingrese Contraseña"|| TxtContrasena.Text == "Ingrese Nueva Contraseña")
             {
                 TxtContrasena.Text = "";
             }
@@ -204,7 +204,7 @@ namespace GestorDePacientes
                 MessageBox.Show("Debe ingresar una misma contraseña en ambos campos");
                 isValid = false;
            }
-             else if (CbxRol.SelectedIndex == 0)
+            else if (CbxRol.SelectedIndex == 0)
             {
                 MessageBox.Show("Debe seleccionar un Rol");
                 isValid = false;

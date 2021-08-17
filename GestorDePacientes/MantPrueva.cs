@@ -1,4 +1,7 @@
-﻿using System;
+﻿using BusinesLayer;
+using System;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace GestorDePacientes
@@ -10,15 +13,28 @@ namespace GestorDePacientes
         #endregion
 
         bool isValid;
+
+        public int PruebaId { get; set; }
+
+        private GestorPacientesServices services;
+
         public MantPrueva()
         {
             InitializeComponent();
+
+            string connectionString = ConfigurationManager.ConnectionStrings["Default"].ToString();
+
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            services = new GestorPacientesServices(connection);
+
+            PruebaId = 0;
         }
 
         #region eventos
         private void MantPrueva_Load(object sender, EventArgs e)
         {
-            fulltxt();
+            //fulltxt();
         }
 
         private void atrasToolStripMenuItem_Click(object sender, EventArgs e)
@@ -47,18 +63,32 @@ namespace GestorDePacientes
         {
             isValid = true;
 
-            if (TxtNombre.Text == "Ingrese Nombre")
+            if (TxtNombre.Text == "Ingrese Nombre"|| TxtNombre.Text =="")
             {
                 MessageBox.Show("Debe ingresar un Nombre");
                 isValid = false;
             }
+
             if (isValid)
             {
+                DataBase.Modelos.PruebaLaboratorio prueba = new DataBase.Modelos.PruebaLaboratorio(TxtNombre.Text);
+
+                if (PruebaId > 0)
+                {
+                    MessageBox.Show("Edit");
+                    services.EditarPreba(prueba, PruebaId);
+                    PruebaId = 0;
+                }
+                else
+                {
+                    MessageBox.Show("Add");
+                    services.AgregarPrueba(prueba);
+                }
+                Dgv.Instancia.LoadData();
                 Dgv.Instancia.Show();
                 Instancia.Hide();
             }
         }
-
         #endregion
 
         #region Metodos
@@ -68,8 +98,13 @@ namespace GestorDePacientes
             TxtNombre.Text = "Ingrese Nombre";
         }
 
-        #endregion
+        public void LoadTxtPrueba()
+        {
+            PruebaId = Convert.ToInt32(Dgv.Instancia.Filaceleccionada.Cells[0].Value);
+            TxtNombre.Text = Dgv.Instancia.Filaceleccionada.Cells[1].Value.ToString();
+            Dgv.Instancia.Filaceleccionada = null;
+        }
 
-
+            #endregion
+        }
     }
-}

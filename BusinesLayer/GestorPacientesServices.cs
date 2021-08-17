@@ -96,6 +96,18 @@ namespace BusinesLayer
         #endregion
 
         #region Puebas
+
+        public bool AgregarPrueba(PruebaLaboratorio prueba)
+        {
+            return repositorio.AgregarPrueba(prueba);
+
+        }
+
+        public bool EditarPreba(PruebaLaboratorio prueba, int idprueba)
+        {
+            return repositorio.EditarPrueba(prueba, idprueba);
+        }
+
         public bool EliminarPrueva(int id)
         {
             return repositorio.EliminarPrueba(id);

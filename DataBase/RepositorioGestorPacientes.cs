@@ -176,7 +176,7 @@ namespace DataBase
             command.Parameters.AddWithValue("@telefono", item.Telefono);
             command.Parameters.AddWithValue("@direccion", item.Direccion);
             command.Parameters.AddWithValue("@cedula", item.Cedula);
-            command.Parameters.AddWithValue("@fecha_nacimiento", item.Telefono);
+            command.Parameters.AddWithValue("@fecha_nacimiento", item.Datebirth);
             command.Parameters.AddWithValue("@fumador", item.Fumador);
             command.Parameters.AddWithValue("@alergias", item.Alergias);
             command.Parameters.AddWithValue("@foto", item.Foto);
@@ -199,13 +199,12 @@ namespace DataBase
 
         //Pruebas_Laboratorio
 
-        public bool AgregarPrueba(PruebaLaboratorio item)
+        public bool AgregarPrueba(PruebaLaboratorio prueba)
         {
             SqlCommand command = new SqlCommand("insert into Pacientes(Nombre) values (@nombre)", _Connection);
 
-            command.Parameters.AddWithValue("@nombre", item.Nombre);
+            command.Parameters.AddWithValue("@nombre", prueba.Nombre);
             
-
             return ExecuteDml(command);
         }
 
@@ -254,7 +253,7 @@ namespace DataBase
         {
             //SqlDataAdapter query = new SqlDataAdapter("Select * from Usuarios", _Connection);
             SqlDataAdapter query = new SqlDataAdapter("select id,Nombre,Apellido,Correo,Nombre_Usuario," +
-            "CASE WHEN Tipo_Usuario = 1 THEN 'Administrador' ELSE 'Usuario' END AS 'Tipo de Usuario' from Usuarios" , _Connection);
+            "CASE WHEN Tipo_Usuario = 1 THEN 'Administrador' ELSE 'Medico' END AS 'Tipo de Usuario' from Usuarios" , _Connection);
 
             return LoadData(query);
         }
@@ -279,7 +278,7 @@ namespace DataBase
 
         public DataTable GetAllPrueba()
         {
-            SqlDataAdapter query = new SqlDataAdapter("select Nombre from Pruebas_Laboratorio", _Connection);
+            SqlDataAdapter query = new SqlDataAdapter("select Nombre as 'Nombre' from Pruebas_Laboratorio", _Connection);
 
             return LoadData(query);
         }
