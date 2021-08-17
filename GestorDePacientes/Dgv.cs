@@ -22,7 +22,9 @@ namespace GestorDePacientes
         public DataGridViewRow Filaceleccionada = null;
 
         private int index = 0;
-        public int idPrueba { get; set; }
+
+        public bool VAlidReference { get; set; }
+
         #endregion
 
         #region Constructor
@@ -96,22 +98,9 @@ namespace GestorDePacientes
         {
             if (e.RowIndex >= 0)
             {
-                //problema con la conversion em index cuando se trata del mantenimiento de prueba
-                //cree la propiedad idprueba como solucion, pero explota a la hora de editar ):
-                //arreglar prueba. hasta en momento solo obtengo los registros
-                
-                if (MenuHome.Instancia.TipoMant == "PrLabo")
-                {
-                    idPrueba = Convert.ToInt32(e.RowIndex.ToString());
-                    Filaceleccionada = DgvData.Rows[e.RowIndex];
-                    BtnVisible();
-                }
-                else
-                {
-                    Filaceleccionada = DgvData.Rows[e.RowIndex];
-                    index = Convert.ToInt32(Filaceleccionada.Cells[0].Value.ToString());
-                    BtnVisible();
-                }
+                Filaceleccionada = DgvData.Rows[e.RowIndex];
+                index = Convert.ToInt32(Filaceleccionada.Cells[0].Value.ToString());
+                BtnVisible();
             }
         }
 
@@ -122,7 +111,6 @@ namespace GestorDePacientes
         #endregion
 
         #region Metodos
-
         public void deselect()
         {
             Filaceleccionada = null;
@@ -132,13 +120,14 @@ namespace GestorDePacientes
             DgvData.ClearSelection();
             //index = null;
         }
-
         public void validDelect()
         {
             if (MenuHome.Instancia.TipoMant == "Usuario")
             {
                 DialogResult response = MessageBox.Show("Esta seguro de eliminar este " +
                     "Usuario?", "Advertencia", MessageBoxButtons.OKCancel);
+
+                
                 if (response == DialogResult.OK)
                 {
                     bool result = services.EliminarUsuario(index);
@@ -149,69 +138,98 @@ namespace GestorDePacientes
                     }
                     else
                     {
-                        MessageBox.Show("Se produjo un error", "Bad News");
+                        MessageBox.Show("Se produjo un error.", "Bad News");
                     }
                 }
             }
-
             else if (MenuHome.Instancia.TipoMant == "Medico")
             {
-                DialogResult response = MessageBox.Show("Esta seguro de eliminar este " +
-                    "Medico?", "Advertencia", MessageBoxButtons.OKCancel);
-                if (response == DialogResult.OK)
+                if (services.getValidDelectMedico(index))
                 {
-                    bool result = services.EliminarMedico(index);
+                    MessageBox.Show(index.ToString());
+                    DialogResult response = MessageBox.Show("Esta seguro de eliminar este " +
+                        "Medico?", "Advertencia", MessageBoxButtons.OKCancel);
 
-                    if (result)
+                    if (response == DialogResult.OK)
                     {
-                        MessageBox.Show("Se elimino con exito!!", "succes");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Se produjo un error", "Bad News");
+                        bool result = services.EliminarMedico(index);
+
+                        if (result)
+                        {
+                            MessageBox.Show("Se elimino con exito!!", "succes");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Se produjo un error.", "Bad News");
+                        }
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Este Medico No se puede eliminar. porque tiene citas" +
+                        " o resultados pendientes.", "Bad News");
+                }
+                
             }
             else if (MenuHome.Instancia.TipoMant == "PrLabo")
             {
-                DialogResult response = MessageBox.Show("Esta seguro de eliminar esta " +
-                    "Prueba?", "Advertencia", MessageBoxButtons.OKCancel);
-                if (response == DialogResult.OK)
+                
+                if (services.getValidDelectPrueba(index))
                 {
-                    bool result = services.EliminarPrueva(idPrueba);
+                    DialogResult response = MessageBox.Show("Esta seguro de eliminar esta " +
+                        "Prueba?", "Advertencia", MessageBoxButtons.OKCancel);
 
-                    if (result)
+                    if (response == DialogResult.OK)
                     {
-                        MessageBox.Show("Se elimino con exito!!", "succes");
+                        bool result = services.EliminarPrueva(index);
+
+                        if (result)
+                        {
+                            MessageBox.Show("Se elimino con exito!!", "succes");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Se produjo un error", "Bad News");
+                        }
                     }
-                    else
-                    {
-                        MessageBox.Show("Se produjo un error", "Bad News");
-                    }
+                }
+                else
+                {
+                    MessageBox.Show("Esta Prueba No se puede eliminar porque ya tiene un resultado.", "Bad News");
                 }
             }
             else if (MenuHome.Instancia.TipoMant == "Paciente")
             {
-                DialogResult response = MessageBox.Show("Esta seguro de eliminar este " +
-                    "Paciente?", "Advertencia", MessageBoxButtons.OKCancel);
-                if (response == DialogResult.OK)
+                if (services.getValidDelectPaciente(index))
                 {
-                    bool result = services.EliminarPaciente(index);
+                    DialogResult response = MessageBox.Show("Esta seguro de eliminar este " +
+                   "Paciente?", "Advertencia", MessageBoxButtons.OKCancel);
+                    if (response == DialogResult.OK)
+                    {
+                        bool result = services.EliminarPaciente(index);
 
-                    if (result)
-                    {
-                        MessageBox.Show("Se elimino con exito!!", "succes");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Se produjo un error", "Bad News");
+                        if (result)
+                        {
+                            MessageBox.Show("Se elimino con exito!!", "succes");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Se produjo un error.", "Bad News");
+                        }
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Este Paciente No se puede eliminar. porque tiene citas" +
+                                           " o resultados pendientes.", "Bad News");
+                }
+                
+                   
             }
-            /*else if (MenuHome.Instancia.TipoMant == "Cita")
+            else if (MenuHome.Instancia.TipoMant == "Cita")
             {
 
-            }*/
+            }
             else if (MenuHome.Instancia.TipoMant == "ResulPrLabo")
             {
 
@@ -219,7 +237,6 @@ namespace GestorDePacientes
             LoadData();
             deselect();
         }
-
         public void validAdd()
         {
             if (MenuHome.Instancia.TipoMant == "Usuario")
@@ -298,8 +315,7 @@ namespace GestorDePacientes
             LoadData();
             deselect();
 
-        }
-        
+        }     
         public void BtnVisible()
         {
             BtnEditar.Visible = true;

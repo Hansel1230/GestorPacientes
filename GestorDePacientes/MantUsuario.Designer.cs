@@ -322,6 +322,7 @@
             this.TxtContrasena.Dock = System.Windows.Forms.DockStyle.Top;
             this.TxtContrasena.Location = new System.Drawing.Point(144, 3);
             this.TxtContrasena.Name = "TxtContrasena";
+            this.TxtContrasena.PasswordChar = '*';
             this.TxtContrasena.Size = new System.Drawing.Size(136, 20);
             this.TxtContrasena.TabIndex = 18;
             this.TxtContrasena.Click += new System.EventHandler(this.TxtContrasena_Click);
@@ -348,6 +349,7 @@
             this.TxtConfiContrasena.Dock = System.Windows.Forms.DockStyle.Top;
             this.TxtConfiContrasena.Location = new System.Drawing.Point(144, 3);
             this.TxtConfiContrasena.Name = "TxtConfiContrasena";
+            this.TxtConfiContrasena.PasswordChar = '*';
             this.TxtConfiContrasena.Size = new System.Drawing.Size(136, 20);
             this.TxtConfiContrasena.TabIndex = 19;
             this.TxtConfiContrasena.Click += new System.EventHandler(this.TxtConfiContrasena_Click);

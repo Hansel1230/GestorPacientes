@@ -15,7 +15,6 @@ namespace GestorDePacientes
 
         private GestorPacientesServices services;
        
-
         private Login()
         {
             InitializeComponent();
@@ -30,6 +29,11 @@ namespace GestorDePacientes
 
         #region Eventos 
         private void LblLogin_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtContrasena_TextChanged(object sender, EventArgs e)
         {
 
         }
@@ -65,6 +69,7 @@ namespace GestorDePacientes
                     MessageBox.Show("Bienvenido " + user.NombreUser,"Info");
                     MenuHome.Instancia.Show();
                     Instancia.Hide();
+                    Fultxt();
                 }
                 else
                 {
@@ -126,10 +131,5 @@ namespace GestorDePacientes
         }
 
         #endregion
-
-        private void TxtContrasena_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

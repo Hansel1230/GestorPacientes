@@ -88,7 +88,7 @@
             // atrasToolStripMenuItem
             // 
             this.atrasToolStripMenuItem.Name = "atrasToolStripMenuItem";
-            this.atrasToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
+            this.atrasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.atrasToolStripMenuItem.Text = "Atras";
             this.atrasToolStripMenuItem.Click += new System.EventHandler(this.atrasToolStripMenuItem_Click);
             // 

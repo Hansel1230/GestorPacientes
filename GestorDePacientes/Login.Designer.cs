@@ -121,6 +121,7 @@
             this.TxtContrasena.Dock = System.Windows.Forms.DockStyle.Top;
             this.TxtContrasena.Location = new System.Drawing.Point(42, 168);
             this.TxtContrasena.Name = "TxtContrasena";
+            this.TxtContrasena.PasswordChar = '*';
             this.TxtContrasena.Size = new System.Drawing.Size(202, 20);
             this.TxtContrasena.TabIndex = 5;
             this.TxtContrasena.Click += new System.EventHandler(this.TxtContrasena_Click);

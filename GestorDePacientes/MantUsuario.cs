@@ -15,9 +15,11 @@ namespace GestorDePacientes
         private GestorPacientesServices services;
         #endregion
 
+        #region props
         bool isValid;
         public int Usuarioid { get; set; } = 0;
         public int tipoUser { get; set; }
+        #endregion
 
         public MantUsuario()
         {
@@ -167,6 +169,8 @@ namespace GestorDePacientes
 
         public void ValidAdd()
         {
+            //bool invalidUser = services.validDuplicados(TxtUsuario.Text);
+
             isValid = true;
             if (TxtNombre.Text == "Ingrese Nombre"|| TxtNombre.Text =="")
             {
@@ -189,6 +193,14 @@ namespace GestorDePacientes
                 MessageBox.Show("Debe ingresar un  Nombre de usuario");
                 isValid = false;
             }
+
+            /*
+            else if (invalidUser)
+            {
+                MessageBox.Show("El Usuario ingresado ya existe. Debe ingresar otro.");
+                isValid = false;
+            }
+            */
             else if (TxtContrasena.Text == "Ingrese Contraseña" || TxtContrasena.Text ==""|| TxtContrasena.Text == "Ingrese Nueva Contraseña")
             {
                 MessageBox.Show("Debe ingresar una contraseña");
@@ -209,8 +221,7 @@ namespace GestorDePacientes
                 MessageBox.Show("Debe seleccionar un Rol");
                 isValid = false;
             }
-            
-            
+           
             if (isValid)
             {
                 DataBase.Modelos.Usuario usuario = new DataBase.Modelos.Usuario(TxtNombre.Text, TxtApellido.Text,
@@ -220,7 +231,7 @@ namespace GestorDePacientes
                 {
                     services.EditarUsuario(usuario, Usuarioid);
                     Usuarioid = 0;
-                }
+                }               
                 else
                 {
                     services.AgregarUsuario(usuario);
@@ -242,7 +253,7 @@ namespace GestorDePacientes
             CbxRol.Items.Add(OpcionDefecto);
 
             ComboBoxItem Usuario = new ComboBoxItem();
-            Usuario.Text = "Usuario";
+            Usuario.Text = "Medico";
             Usuario.Value = 0;
             CbxRol.Items.Add(Usuario);
 

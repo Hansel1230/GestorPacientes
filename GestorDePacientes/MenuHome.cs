@@ -34,8 +34,12 @@ namespace GestorDePacientes
             services = new GestorPacientesServices(connection);
         }
 
-
         #region Eventos 
+
+        private void MenuHome_Load(object sender, EventArgs e)
+        {
+
+        }
 
         private void BtnUsuario_Click(object sender, EventArgs e)
         {
@@ -139,12 +143,6 @@ namespace GestorDePacientes
            
         }
 
-
         #endregion
-
-        private void MenuHome_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

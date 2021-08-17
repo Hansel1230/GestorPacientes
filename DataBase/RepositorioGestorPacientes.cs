@@ -10,6 +10,8 @@ namespace DataBase
     {
         private SqlConnection _Connection;
 
+        //private bool Valid = true;
+
         public int HomeValid { get; set; }
 
         public RepositorioGestorPacientes(SqlConnection Connection)
@@ -96,6 +98,21 @@ namespace DataBase
 
             return ExecuteDml(command);
         }
+
+        public bool validDuplicados(string user)
+        {
+
+            SqlDataAdapter query = new SqlDataAdapter("select * from Usuarios where Nombre_Usuario = " + user, _Connection);
+
+            int valoruser = Convert.ToInt32(LoadData(query).Rows.Count);
+
+            if (valoruser > 0)
+            {
+                return true;
+            }
+
+            return false;
+        } 
         #endregion
 
         #region Mant.bbdd.Medicos
@@ -199,11 +216,11 @@ namespace DataBase
 
         //Pruebas_Laboratorio
 
-        public bool AgregarPrueba(PruebaLaboratorio prueba)
+        public bool AgregarPrueba(PruebaLaboratorio item)
         {
-            SqlCommand command = new SqlCommand("insert into Pacientes(Nombre) values (@nombre)", _Connection);
+            SqlCommand command = new SqlCommand("insert into Pruebas_Laboratorio(Nombre) values (@nombre)", _Connection);
 
-            command.Parameters.AddWithValue("@nombre", prueba.Nombre);
+            command.Parameters.AddWithValue("@nombre", item.Nombre);
             
             return ExecuteDml(command);
         }
@@ -278,7 +295,7 @@ namespace DataBase
 
         public DataTable GetAllPrueba()
         {
-            SqlDataAdapter query = new SqlDataAdapter("select Nombre as 'Nombre' from Pruebas_Laboratorio", _Connection);
+            SqlDataAdapter query = new SqlDataAdapter("select id,Nombre from Pruebas_Laboratorio", _Connection);
 
             return LoadData(query);
         }
@@ -377,6 +394,72 @@ namespace DataBase
             return lastId;
 
         }
+        #endregion
+
+        #region  getValidDelect
+
+        public bool getValidDelectPaciente(int idPaciente)
+        {
+            SqlDataAdapter get_resultado = new SqlDataAdapter("select Estado_Resultado from Resultados_Laboratorio" +
+                 " where Estado_Resultado=0 and idPaciente=" + idPaciente, _Connection);
+
+            int valorLaboratorio = Convert.ToInt32(LoadData(get_resultado).Rows.Count);
+
+            SqlDataAdapter get_cita = new SqlDataAdapter("select Estado_Cita from Citas" +
+                 " where Estado_Cita=0 and idPaciente=" + idPaciente, _Connection);
+
+
+            int valorCita = Convert.ToInt32(LoadData(get_cita).Rows.Count);
+
+
+            if (valorLaboratorio > 0 || valorCita > 0)
+            {
+                return false;
+
+            }
+
+            return true;
+        }
+
+        public bool getValidDelectMedico(int idMedico)
+        {          
+            SqlDataAdapter get_resultado = new SqlDataAdapter("select Estado_Resultado from Resultados_Laboratorio" +
+                 " where Estado_Resultado=0 and idDoctor=" + idMedico, _Connection);
+
+            int valorLaboratorio =Convert.ToInt32(LoadData(get_resultado).Rows.Count);
+
+            SqlDataAdapter get_cita = new SqlDataAdapter("select Estado_Cita from Citas" +
+                 " where Estado_Cita=0 and idDoctor=" + idMedico, _Connection);
+
+
+            int valorCita = Convert.ToInt32(LoadData(get_cita).Rows.Count);
+
+
+            if (valorLaboratorio >0 || valorCita > 0)
+            {
+                return false;
+
+            }
+
+            return true;
+        }
+
+        public bool getValidDelectPrueba(int idPrueba)
+        {         
+            SqlDataAdapter resultado = new SqlDataAdapter("select * from Resultados_Laboratorio" +
+                " where idPrueva_Laboriatorio=" + idPrueba, _Connection);
+
+            int cant = LoadData(resultado).Rows.Count;
+
+            if (cant == 0)
+            {
+                return true;
+            }
+            
+            return false;
+        }
+
+        
         #endregion
     }
 }

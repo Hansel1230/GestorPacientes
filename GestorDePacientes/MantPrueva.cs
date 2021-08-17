@@ -14,7 +14,7 @@ namespace GestorDePacientes
 
         bool isValid;
 
-        public int PruebaId { get; set; }
+        public int PruebaId { get; set; } = 0;
 
         private GestorPacientesServices services;
 
@@ -28,7 +28,7 @@ namespace GestorDePacientes
 
             services = new GestorPacientesServices(connection);
 
-            PruebaId = 0;
+            
         }
 
         #region eventos
@@ -80,9 +80,9 @@ namespace GestorDePacientes
                     PruebaId = 0;
                 }
                 else
-                {
-                    MessageBox.Show("Add");
+                {                    
                     services.AgregarPrueba(prueba);
+                    MessageBox.Show("Add");
                 }
                 Dgv.Instancia.LoadData();
                 Dgv.Instancia.Show();

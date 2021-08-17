@@ -45,7 +45,10 @@ namespace BusinesLayer
             return repositorio.GetAllUsuario();
         }
 
-        
+        public bool validDuplicados(string user)
+        {
+            return repositorio.validDuplicados(user);
+        }
         #endregion
 
         #region Medico 
@@ -70,6 +73,11 @@ namespace BusinesLayer
         {
             return repositorio.GetAllMedico();
         }
+
+        public bool getValidDelectMedico(int idMedico)
+        {
+            return repositorio.getValidDelectMedico(idMedico);
+        }
         #endregion
 
         #region Pacientes 
@@ -93,6 +101,12 @@ namespace BusinesLayer
         {
             return repositorio.GetAllPaciente();
         }
+
+        public bool getValidDelectPaciente(int idPaciente)
+        {
+            return repositorio.getValidDelectPaciente(idPaciente);
+
+        }
         #endregion
 
         #region Puebas
@@ -112,6 +126,16 @@ namespace BusinesLayer
         {
             return repositorio.EliminarPrueba(id);
         }
+
+        public DataTable GetAllPrueba()
+        {
+            return repositorio.GetAllPrueba();
+        }
+
+        public bool getValidDelectPrueba(int idprueba)
+        {
+            return repositorio.getValidDelectPrueba(idprueba);
+        }
         #endregion
 
         #region Foto
@@ -128,10 +152,7 @@ namespace BusinesLayer
 
         #region GetAllLossquefaltan
 
-        public DataTable GetAllPrueba()
-        {
-            return repositorio.GetAllPrueba();
-        }
+        
 
         public DataTable GetAllResultado()
         {
