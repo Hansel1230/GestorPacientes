@@ -347,12 +347,7 @@ namespace GestorDePacientes
             else if (MenuHome.Instancia.TipoMant == "Cita")
             {
                 DgvData.DataSource = services.GetAllCita();
-            }
-
-            else if (MenuHome.Instancia.TipoMant == "ResulPrLabo")
-            {
-                DgvData.DataSource = services.GetAllResultado();
-            }
+            }            
             DgvData.ClearSelection();
         }
         #endregion

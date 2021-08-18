@@ -245,6 +245,31 @@ namespace DataBase
         }
         #endregion
 
+        #region Resultados
+
+        /*public bool getCedulaResultado(String cedula)
+        {
+            SqlDataAdapter getCedularesultado = new SqlDataAdapter("select Nombre,Apellido,Cedula from Pacientes" +
+                 " where Cedula=" + cedula, _Connection);
+
+            //int valorLaboratorio = Convert.ToInt32(LoadData(get_resultado).Rows.Count);
+
+            
+
+            //int valorCita = Convert.ToInt32(LoadData(get_cita).Rows.Count);
+
+
+            //if (valorLaboratorio > 0 || valorCita > 0)
+            {
+                return false;
+
+            }
+
+            return true;
+        }
+        */
+        #endregion
+
         #region Mant.bbdd.Citas
 
         //Pruebas_Laboratorio
@@ -303,11 +328,25 @@ namespace DataBase
         public DataTable GetAllResultado()
         {
             //se requiere 'NombrePaciente','ApellidoPaciente','CedulaPaciente','NombrePruebalaboratorio'
-            SqlDataAdapter query = new SqlDataAdapter("select idPaciente as 'Paciente',idCita as 'Cita'," +
-                "idPrueba_Laboratorio as 'Prueba de laboratorio',idDoctor as 'Doctor'," +
-                "Resultado_Prueba as 'Resultado de prueba',Estado_Resultado as 'Estado de prueba'" +
-                "from Resultados_Laboratorio", _Connection);
-              //+"inner join Pacientes on (id)", _Connection);
+            SqlDataAdapter query = new SqlDataAdapter("select Resultados_Laboratorio.id," +
+                "Pacientes.Nombre+' '+Pacientes.Apellido as 'Nombre Paciente',Pacientes.Cedula" +
+                ",Pruebas_Laboratorio.Nombre as 'Nombre de Prueba'" +
+                " FROM Resultados_Laboratorio " +
+                "join Pacientes on Pacientes.id=Resultados_Laboratorio.idPaciente" +
+                "join Pruebas_Laboratorio on Resultados_Laboratorio.idPrueva_Laboriatorio=Pruebas_Laboratorio.id", _Connection);
+
+            /*SELECT TOP (1000) Resultados_Laboratorio.[id]
+      ,Pacientes.Nombre+' '+Pacientes.Apellido as 'Nombre Paciente'
+	  ,Pacientes.Cedula 
+     -- ,Resultados_Laboratorio.[idCita]
+      ,Pruebas_Laboratorio.Nombre as 'Nombre de Prueba'
+      --,Medicos.Nombre+' '+Medicos.Apellido as 'Nombre del Medico'
+     -- ,Resultados_Laboratorio.[Resultado_Prueva]
+     -- ,Resultados_Laboratorio.[Estado_Resultado]
+  FROM [GestorDePacientes].[dbo].[Resultados_Laboratorio] 
+  join Pacientes on Pacientes.id=Resultados_Laboratorio.idPaciente 
+  join Pruebas_Laboratorio on Resultados_Laboratorio.idPrueva_Laboriatorio=Pruebas_Laboratorio.id
+  --join Medicos on Resultados_Laboratorio.idDoctor=Medicos.id;*/
 
             return LoadData(query);
         }

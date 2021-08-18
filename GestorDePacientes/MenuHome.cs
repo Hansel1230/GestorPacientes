@@ -123,17 +123,28 @@ namespace GestorDePacientes
 
         private void BtnResulPrLabo_Click(object sender, EventArgs e)
         {
+            Resultado_Laboratorio.Instancia.LoadData();
+            Resultado_Laboratorio.Instancia.Show();
+            Instancia.Hide();
+            /*
             if (HomeValid == 0)
             {
-                Dgv.Instancia.Show();
-                Instancia.Hide();
-                TipoMant = "ResulPrLabo";
+
+                Resultado_Laboratorio.Instancia.LoadData();
+
+                if (Resultado_Laboratorio.Instancia.isValid)
+                {
+                    Resultado_Laboratorio.Instancia.Show();
+                    Instancia.Hide();
+
+                }
+
             }
             else
             {
                 MessageBox.Show("Usted no tiene acceso a ese apartado");
             }
-            
+            */
         }
 
         private void LoginToolStripMenuItem_Click(object sender, EventArgs e)
