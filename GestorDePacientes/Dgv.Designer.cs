@@ -34,10 +34,10 @@
             this.atrasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DgvData = new System.Windows.Forms.DataGridView();
             this.BtnAgregar = new System.Windows.Forms.Button();
-            this.BtnDeselect = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnEditar = new System.Windows.Forms.Button();
             this.BtnEliminar = new System.Windows.Forms.Button();
+            this.BtnDeselect = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvData)).BeginInit();
@@ -88,7 +88,7 @@
             // atrasToolStripMenuItem
             // 
             this.atrasToolStripMenuItem.Name = "atrasToolStripMenuItem";
-            this.atrasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.atrasToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
             this.atrasToolStripMenuItem.Text = "Atras";
             this.atrasToolStripMenuItem.Click += new System.EventHandler(this.atrasToolStripMenuItem_Click);
             // 
@@ -123,18 +123,6 @@
             this.BtnAgregar.Text = "Agregar";
             this.BtnAgregar.UseVisualStyleBackColor = true;
             this.BtnAgregar.Click += new System.EventHandler(this.BtnAgregar_Click);
-            // 
-            // BtnDeselect
-            // 
-            this.BtnDeselect.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnDeselect.Location = new System.Drawing.Point(399, 3);
-            this.BtnDeselect.Name = "BtnDeselect";
-            this.BtnDeselect.Size = new System.Drawing.Size(194, 48);
-            this.BtnDeselect.TabIndex = 3;
-            this.BtnDeselect.Text = "Deseleccionar";
-            this.BtnDeselect.UseVisualStyleBackColor = true;
-            this.BtnDeselect.Visible = false;
-            this.BtnDeselect.Click += new System.EventHandler(this.BtnDeselect_Click);
             // 
             // tableLayoutPanel2
             // 
@@ -176,6 +164,18 @@
             this.BtnEliminar.UseVisualStyleBackColor = true;
             this.BtnEliminar.Visible = false;
             this.BtnEliminar.Click += new System.EventHandler(this.BtnEliminar_Click);
+            // 
+            // BtnDeselect
+            // 
+            this.BtnDeselect.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnDeselect.Location = new System.Drawing.Point(399, 3);
+            this.BtnDeselect.Name = "BtnDeselect";
+            this.BtnDeselect.Size = new System.Drawing.Size(194, 48);
+            this.BtnDeselect.TabIndex = 3;
+            this.BtnDeselect.Text = "Deseleccionar";
+            this.BtnDeselect.UseVisualStyleBackColor = true;
+            this.BtnDeselect.Visible = false;
+            this.BtnDeselect.Click += new System.EventHandler(this.BtnDeselect_Click);
             // 
             // Dgv
             // 

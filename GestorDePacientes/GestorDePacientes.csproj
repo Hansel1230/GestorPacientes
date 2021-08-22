@@ -59,11 +59,29 @@
     <Compile Include="Dgv.Designer.cs">
       <DependentUpon>Dgv.cs</DependentUpon>
     </Compile>
-    <Compile Include="FomCitas.cs">
+    <Compile Include="FomBusqueda.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FomCitas.Designer.cs">
-      <DependentUpon>FomCitas.cs</DependentUpon>
+    <Compile Include="FomBusqueda.Designer.cs">
+      <DependentUpon>FomBusqueda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FomCitaCompletada.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FomCitaCompletada.Designer.cs">
+      <DependentUpon>FomCitaCompletada.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fomPruebasCreadas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fomPruebasCreadas.Designer.cs">
+      <DependentUpon>fomPruebasCreadas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FomResultadosLPC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FomResultadosLPC.Designer.cs">
+      <DependentUpon>FomResultadosLPC.cs</DependentUpon>
     </Compile>
     <Compile Include="formularioCita.cs">
       <SubType>Form</SubType>
@@ -121,8 +139,17 @@
     <EmbeddedResource Include="Dgv.resx">
       <DependentUpon>Dgv.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FomCitas.resx">
-      <DependentUpon>FomCitas.cs</DependentUpon>
+    <EmbeddedResource Include="FomBusqueda.resx">
+      <DependentUpon>FomBusqueda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FomCitaCompletada.resx">
+      <DependentUpon>FomCitaCompletada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fomPruebasCreadas.resx">
+      <DependentUpon>fomPruebasCreadas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FomResultadosLPC.resx">
+      <DependentUpon>FomResultadosLPC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formularioCita.resx">
       <DependentUpon>formularioCita.cs</DependentUpon>

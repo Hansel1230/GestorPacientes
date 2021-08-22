@@ -229,6 +229,22 @@ namespace GestorDePacientes
             else if (MenuHome.Instancia.TipoMant == "Cita")
             {
 
+                DialogResult response = MessageBox.Show("Esta seguro de eliminar esta " +
+               "Cita?", "Advertencia", MessageBoxButtons.OKCancel);
+                if (response == DialogResult.OK)
+                {
+                    bool result = services.EliminarCita(index);
+
+                    if (result)
+                    {
+                        MessageBox.Show("Se elimino con exito!!", "succes");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Se produjo un error.", "Bad News");
+                    }
+                }
+
             }
             else if (MenuHome.Instancia.TipoMant == "ResulPrLabo")
             {
@@ -297,9 +313,31 @@ namespace GestorDePacientes
             {
                 if (Filaceleccionada != null)
                 {
-                    // MantUsuario.Instancia.LoadTxt();
+                    string tipoCita = Filaceleccionada.Cells[5].Value.ToString();
+                    int idCita = Convert.ToInt32(Filaceleccionada.Cells[0].Value);
+
+                    if (tipoCita == "Pendiente de consulta")
+                    {
+                        fomPruebasCreadas.Instancia.LoadData(idCita);
+                        fomPruebasCreadas.Instancia.Show();
+                    }
+                    else if (tipoCita == "Pendiente de resultados")
+                    {
+                        FomResultadosLPC.Instancia.LoadData(idCita);
+                        FomResultadosLPC.Instancia.Show();
+                    }
+                    else
+                    {
+                        FomCitaCompletada.Instancia.LoadData(idCita);
+                        FomCitaCompletada.Instancia.Show();
+                    }
                 }
-                //MantCita.Instancia.Show();
+                else
+                {
+
+                    FomBusqueda.Instancia.LoadData();
+                    FomBusqueda.Instancia.Show();
+                }
                 Instancia.Hide();
             }
             else if (MenuHome.Instancia.TipoMant == "ResulPrLabo")
@@ -318,6 +356,26 @@ namespace GestorDePacientes
         }     
         public void BtnVisible()
         {
+            BtnEditar.Text = "Editar";
+
+            if (MenuHome.Instancia.TipoMant == "Cita")
+            {
+                string tipoCita = Filaceleccionada.Cells[5].Value.ToString();
+
+                if (tipoCita == "Pendiente de consulta")
+                {
+                    BtnEditar.Text = "Consultar";
+                }
+                else if (tipoCita == "Pendiente de resultados")
+                {
+                    BtnEditar.Text = "Consultar Resultados";
+                }
+                else
+                {
+                    BtnEditar.Text = "Ver Resultados";
+                }
+            }
+
             BtnEditar.Visible = true;
             BtnEliminar.Visible = true;
             BtnDeselect.Visible = true;

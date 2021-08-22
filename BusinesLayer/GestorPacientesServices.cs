@@ -107,6 +107,10 @@ namespace BusinesLayer
             return repositorio.getValidDelectPaciente(idPaciente);
 
         }
+        public bool EliminarCita(int id)
+        {
+            return repositorio.EliminarCita(id);
+        }
         #endregion
 
         #region Puebas
@@ -162,6 +166,72 @@ namespace BusinesLayer
         public DataTable GetAllCita()
         {
             return repositorio.GetAllCita();
+        }
+
+        public DataTable GetAllAviablePacientes()
+        {
+            return repositorio.GetAllAviablePacientes();
+        }
+
+        public DataTable GetAllAviablePacientesByCedula(string cedula)
+        {
+            return repositorio.GetAllAviablePacientesByCedula(cedula);
+        }
+
+        public bool IsValidCedulaPaciente(string cedula)
+        {
+            return repositorio.IsValidCedulaPaciente(cedula);
+        }
+
+        public DataTable GetAllAviableMedicos()
+        {
+            return repositorio.GetAllAviableMedicos();
+        }
+
+        public DataTable GetAllAviableMedicosByCedula(string cedula)
+        {
+            return repositorio.GetAllAviableMedicosByCedula(cedula);
+        }
+
+        public bool IsValidCedulaMedico(string cedula)
+        {
+            return repositorio.IsValidCedulaMedico(cedula);
+        }
+
+        public bool AgregarCita(Citas cita)
+        {
+            return repositorio.AgregarCita(cita);
+        }
+
+        public string GetIdPacienteCita(int idcita)
+        {
+            return repositorio.GetIdPacienteCita(idcita);
+        }
+
+        public string GetIdMedicoCita(int idcita)
+        {
+            return repositorio.GetIdMedicoCita(idcita);
+        }
+
+        public bool CambiarEstadoCita(int estado, int idcita)
+        {
+            return repositorio.CambiarEstadoCita(estado, idcita);
+        }
+
+        public bool AgregarResultadoLaboratorio(ResultPruebaLaboratorio resultado)
+        {
+            return repositorio.AgregarResultadoLaboratorio(resultado);
+        }
+
+        public DataTable GetAllResultadoLPC(int idCita)
+        {
+            return repositorio.GetAllResultadoLPC(idCita);
+        }
+
+
+        public DataTable GetAllResultadoByCedula(string cedula)
+        {
+            return repositorio.GetAllResultadoByCedula(cedula);
         }
         #endregion
     }

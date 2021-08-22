@@ -105,21 +105,7 @@ namespace GestorDePacientes
 
         public void LoadData()
         {
-            try
-            {
-                //isValid = Convert.ToBoolean(
-                isValid = Convert.ToBoolean(DgvResultados.DataSource = services.GetAllResultado());
-                //DgvResultados.ClearSelection();
-                MessageBox.Show("Pase");
-                if (isValid == false)
-                {
-                    MessageBox.Show("No tiene resultados pendientes, primero ingrese para poder acceder a ese apartado");
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Exploto");
-            }
+            DgvResultados.DataSource = services.GetAllResultado();
         }
 
         public void deselect()
@@ -131,6 +117,39 @@ namespace GestorDePacientes
             DgvResultados.ClearSelection();
             index = 0;
         }
-        #endregion        
+        #endregion
+
+        public void LoadDataByCedula(string cedula)
+        {
+            DgvResultados.DataSource = services.GetAllResultadoByCedula(cedula);
+        }
+
+        private void BtnFiltrar_Click_1(object sender, EventArgs e)
+        {
+            string cedula = TxtFiltrar.Text;
+
+            if (cedula == "")
+            {
+                MessageBox.Show("Debe ingresar una cedula valida para realizar la busqueda", "Advertencia");
+            }
+            else
+            {
+                bool isValidCedula = services.IsValidCedulaPaciente(cedula);
+
+                if (isValidCedula)
+                {
+                    LoadDataByCedula(cedula);
+                }
+                else
+                {
+                    MessageBox.Show("Debe ingresar una cedula valida para realizar la busqueda", "Advertencia");
+                }
+            }
+        }
+
+        private void BtnCrearCita_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

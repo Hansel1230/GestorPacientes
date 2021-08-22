@@ -17,7 +17,7 @@ namespace DataBase.Modelos
 
         public Citas(int idpaciente,int iddoctor,int estadocita,string fechacita,string causacita)
         {
-            this.idPaciente = idPaciente;
+            this.idPaciente = idpaciente;
             this.idDoctor = iddoctor;
             this.EstadoCita = estadocita;
             this.CausaCita = causacita;

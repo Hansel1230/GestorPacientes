@@ -31,6 +31,9 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.TxtFiltrar = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.BtnFiltrar = new System.Windows.Forms.Button();
+            this.BtnCrearCita = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.atrasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,16 +42,13 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnReportar = new System.Windows.Forms.Button();
             this.BtnDeselect = new System.Windows.Forms.Button();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.BtnFiltrar = new System.Windows.Forms.Button();
-            this.BtnCrearCita = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvResultados)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
-            this.tableLayoutPanel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -97,6 +97,44 @@
             this.TxtFiltrar.TabIndex = 1;
             this.TxtFiltrar.Click += new System.EventHandler(this.TxtFiltrar_Click);
             this.TxtFiltrar.Leave += new System.EventHandler(this.TxtFiltrar_Leave);
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 2;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.76852F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.23148F));
+            this.tableLayoutPanel5.Controls.Add(this.BtnFiltrar, 1, 0);
+            this.tableLayoutPanel5.Controls.Add(this.BtnCrearCita, 0, 0);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 1;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(432, 28);
+            this.tableLayoutPanel5.TabIndex = 2;
+            // 
+            // BtnFiltrar
+            // 
+            this.BtnFiltrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnFiltrar.Location = new System.Drawing.Point(354, 3);
+            this.BtnFiltrar.Name = "BtnFiltrar";
+            this.BtnFiltrar.Size = new System.Drawing.Size(75, 22);
+            this.BtnFiltrar.TabIndex = 1;
+            this.BtnFiltrar.Text = "Filtrar";
+            this.BtnFiltrar.UseVisualStyleBackColor = true;
+            this.BtnFiltrar.Click += new System.EventHandler(this.BtnFiltrar_Click_1);
+            // 
+            // BtnCrearCita
+            // 
+            this.BtnCrearCita.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BtnCrearCita.Location = new System.Drawing.Point(3, 3);
+            this.BtnCrearCita.Name = "BtnCrearCita";
+            this.BtnCrearCita.Size = new System.Drawing.Size(209, 22);
+            this.BtnCrearCita.TabIndex = 2;
+            this.BtnCrearCita.Text = "CrearCita";
+            this.BtnCrearCita.UseVisualStyleBackColor = true;
+            this.BtnCrearCita.Visible = false;
+            this.BtnCrearCita.Click += new System.EventHandler(this.BtnCrearCita_Click);
             // 
             // menuStrip1
             // 
@@ -194,41 +232,6 @@
             this.BtnDeselect.Visible = false;
             this.BtnDeselect.Click += new System.EventHandler(this.BtnDeselect_Click);
             // 
-            // tableLayoutPanel5
-            // 
-            this.tableLayoutPanel5.ColumnCount = 2;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.76852F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.23148F));
-            this.tableLayoutPanel5.Controls.Add(this.BtnFiltrar, 1, 0);
-            this.tableLayoutPanel5.Controls.Add(this.BtnCrearCita, 0, 0);
-            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 1;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(432, 28);
-            this.tableLayoutPanel5.TabIndex = 2;
-            // 
-            // BtnFiltrar
-            // 
-            this.BtnFiltrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnFiltrar.Location = new System.Drawing.Point(354, 3);
-            this.BtnFiltrar.Name = "BtnFiltrar";
-            this.BtnFiltrar.Size = new System.Drawing.Size(75, 22);
-            this.BtnFiltrar.TabIndex = 1;
-            this.BtnFiltrar.Text = "Filtrar";
-            this.BtnFiltrar.UseVisualStyleBackColor = true;
-            // 
-            // BtnCrearCita
-            // 
-            this.BtnCrearCita.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BtnCrearCita.Location = new System.Drawing.Point(3, 3);
-            this.BtnCrearCita.Name = "BtnCrearCita";
-            this.BtnCrearCita.Size = new System.Drawing.Size(209, 22);
-            this.BtnCrearCita.TabIndex = 2;
-            this.BtnCrearCita.Text = "CrearCita";
-            this.BtnCrearCita.UseVisualStyleBackColor = true;
-            // 
             // Resultado_Laboratorio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -243,12 +246,12 @@
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
+            this.tableLayoutPanel5.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DgvResultados)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

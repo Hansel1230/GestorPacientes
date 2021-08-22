@@ -1,7 +1,6 @@
 ﻿
 using DataBase.Modelos;
 using System;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 namespace DataBase
@@ -273,17 +272,35 @@ namespace DataBase
         #region Mant.bbdd.Citas
 
         //Pruebas_Laboratorio
+        public bool AgregarResultadoLaboratorio(ResultPruebaLaboratorio resultado)
+        {
 
-        public bool AgregarCita(Citas item)
+            SqlCommand command = new SqlCommand("insert into Resultados_Laboratorio " +
+                "(idPaciente,idCita,idPrueva_Laboriatorio,idDoctor,Resultado_Prueva,Estado_Resultado) " +
+                "values (@idPaciente,@idCita,@idPrueva_Laboriatorio,@idDoctor,@Resultado_Prueva,@Estado_Resultado) " +
+                "", _Connection);
+
+            command.Parameters.AddWithValue("@idpaciente", resultado.idPaciente);
+            command.Parameters.AddWithValue("@idCita", resultado.idCita);
+            command.Parameters.AddWithValue("@idPrueva_Laboriatorio", resultado.idPruebaLabo);
+            command.Parameters.AddWithValue("@idDoctor", resultado.idDoctor);
+            command.Parameters.AddWithValue("@Resultado_Prueva", resultado.ResultadoPrueva);
+            command.Parameters.AddWithValue("@Estado_Resultado", resultado.EstadoResultado);
+
+
+            return ExecuteDml(command);
+        }
+
+        public bool AgregarCita(Citas cita)
         {
             SqlCommand command = new SqlCommand("insert into Citas(idPaciente,idDoctor,Fecha_Hora_Cita,Causa_Cita," +
                 "Estado_Cita) values (@idpaciente,@idDoctor,@fecha_hora_cita,@causa_cita,@estado_cita)", _Connection);
 
-            command.Parameters.AddWithValue("@idpaciente", item.idPaciente);
-            command.Parameters.AddWithValue("@idDoctor", item.idDoctor);
-            command.Parameters.AddWithValue("@fecha_hora_cita", item.FechaCita);
-            command.Parameters.AddWithValue("@causa_cita", item.CausaCita);
-            command.Parameters.AddWithValue("@estado_cita", item.EstadoCita);
+            command.Parameters.AddWithValue("@idpaciente", cita.idPaciente);
+            command.Parameters.AddWithValue("@idDoctor", cita.idDoctor);
+            command.Parameters.AddWithValue("@fecha_hora_cita", cita.FechaCita);
+            command.Parameters.AddWithValue("@causa_cita", cita.CausaCita);
+            command.Parameters.AddWithValue("@estado_cita", cita.EstadoCita);
 
 
             return ExecuteDml(command);
@@ -327,37 +344,138 @@ namespace DataBase
 
         public DataTable GetAllResultado()
         {
-            //se requiere 'NombrePaciente','ApellidoPaciente','CedulaPaciente','NombrePruebalaboratorio'
-            SqlDataAdapter query = new SqlDataAdapter("select Resultados_Laboratorio.id," +
-                "Pacientes.Nombre+' '+Pacientes.Apellido as 'Nombre Paciente',Pacientes.Cedula" +
-                ",Pruebas_Laboratorio.Nombre as 'Nombre de Prueba'" +
-                " FROM Resultados_Laboratorio " +
-                "join Pacientes on Pacientes.id=Resultados_Laboratorio.idPaciente" +
-                "join Pruebas_Laboratorio on Resultados_Laboratorio.idPrueva_Laboriatorio=Pruebas_Laboratorio.id", _Connection);
+            SqlDataAdapter query = new SqlDataAdapter("select Resultados_Laboratorio.id, " +
+                "Pacientes.Nombre+' '+Pacientes.Apellido as 'Nombre Paciente',Pacientes.Cedula, " +
+                "Pruebas_Laboratorio.Nombre as 'Nombre de Prueba' " +
+                "FROM Resultados_Laboratorio " +
+                "join Pacientes on Pacientes.id=Resultados_Laboratorio.idPaciente " +
+                "join Pruebas_Laboratorio on Resultados_Laboratorio.idPrueva_Laboriatorio=Pruebas_Laboratorio.id " +
+                "where Resultados_Laboratorio.Estado_Resultado = 0", _Connection);
 
-            /*SELECT TOP (1000) Resultados_Laboratorio.[id]
-      ,Pacientes.Nombre+' '+Pacientes.Apellido as 'Nombre Paciente'
-	  ,Pacientes.Cedula 
-     -- ,Resultados_Laboratorio.[idCita]
-      ,Pruebas_Laboratorio.Nombre as 'Nombre de Prueba'
-      --,Medicos.Nombre+' '+Medicos.Apellido as 'Nombre del Medico'
-     -- ,Resultados_Laboratorio.[Resultado_Prueva]
-     -- ,Resultados_Laboratorio.[Estado_Resultado]
-  FROM [GestorDePacientes].[dbo].[Resultados_Laboratorio] 
-  join Pacientes on Pacientes.id=Resultados_Laboratorio.idPaciente 
-  join Pruebas_Laboratorio on Resultados_Laboratorio.idPrueva_Laboriatorio=Pruebas_Laboratorio.id
-  --join Medicos on Resultados_Laboratorio.idDoctor=Medicos.id;*/
+            return LoadData(query);
+        }
+
+        public DataTable GetAllResultadoByCedula(string cedula)
+        {
+            SqlDataAdapter query = new SqlDataAdapter("select Resultados_Laboratorio.id, " +
+                "Pacientes.Nombre+' '+Pacientes.Apellido as 'Nombre Paciente',Pacientes.Cedula, " +
+                "Pruebas_Laboratorio.Nombre as 'Nombre de Prueba' " +
+                "FROM Resultados_Laboratorio " +
+                "join Pacientes on Pacientes.id=Resultados_Laboratorio.idPaciente " +
+                "join Pruebas_Laboratorio on Resultados_Laboratorio.idPrueva_Laboriatorio=Pruebas_Laboratorio.id " +
+                "where Resultados_Laboratorio.Estado_Resultado = 0 and Pacientes.Cedula = '" + cedula+"'", _Connection);
+
+            return LoadData(query);
+        }
+
+        public DataTable GetAllResultadoLPC(int idCita)
+        {
+            SqlDataAdapter query = new SqlDataAdapter("select PL.Nombre, " +
+               " Case when RL.Estado_Resultado = 0 then 'Pendiente' else 'Completado' end as 'Estado Resultado' " +
+               " from Resultados_Laboratorio as RL join Pruebas_Laboratorio as PL on RL.idPrueva_Laboriatorio = PL.id " +
+               " where idCita = " + idCita, _Connection);
 
             return LoadData(query);
         }
 
         public DataTable GetAllCita()
         {
-            SqlDataAdapter query = new SqlDataAdapter("select Nombre,Apellido,Correo,Nombre_Usuario,Contrasena," +
-                "Tipo_Usuario from Usuarios", _Connection);
+            SqlDataAdapter query = new SqlDataAdapter("SELECT citas.id as idCita, Pacientes.Nombre as 'Nombre Paciente'" +
+                ",Medicos.Nombre as 'Nombre Medico',Fecha_Hora_Cita as 'Fecha y Hora',Causa_Cita as 'Causa de la cita', " +
+                "CASE WHEN Estado_Cita = 0 THEN 'Pendiente de consulta' WHEN Estado_Cita = 1 THEN 'Pendiente de resultados' " +
+                "ELSE 'Completa' END AS 'Estado de la cita' FROM Citas join Pacientes on Pacientes.id=Citas.idPaciente " +
+                "join Medicos on Medicos.id=Citas.idDoctor", _Connection);
 
             return LoadData(query);
         }
+
+
+        public DataTable GetAllAviablePacientes()
+        {
+            SqlDataAdapter query = new SqlDataAdapter("SELECT Cedula, Nombre, Apellido, id From Pacientes", _Connection);
+
+            return LoadData(query);
+        }
+
+        public DataTable GetAllAviablePacientesByCedula(string cedula)
+        {
+            SqlDataAdapter query = new SqlDataAdapter("SELECT Cedula, Nombre, Apellido, id From Pacientes where Cedula = '" + cedula+"'", _Connection);
+
+            return LoadData(query);
+        }
+
+        public string GetIdPacienteCita(int idcita)
+        {
+            SqlCommand query = new SqlCommand("select idPaciente from Citas where id = '"+idcita+"'" , _Connection);
+            string value = GetExecuteDmlValue(query);
+            return value;
+        }
+
+        public string GetIdMedicoCita(int idcita)
+        {
+            SqlCommand query = new SqlCommand("select idDoctor from Citas where id = '" + idcita + "'", _Connection);
+            string value = GetExecuteDmlValue(query);
+            return value;
+        }
+
+        public bool CambiarEstadoCita(int estado,int idcita)
+        {
+            SqlCommand command = new SqlCommand("update Citas set Estado_Cita=@estado where id=@id", _Connection);
+
+            command.Parameters.AddWithValue("@estado", estado);
+            command.Parameters.AddWithValue("@id", idcita);
+
+            return ExecuteDml(command);
+        }
+
+        public bool EliminarCita(int id)
+        {
+            SqlCommand command = new SqlCommand("delete Citas where id=@id", _Connection);
+
+            command.Parameters.AddWithValue("@id", id);
+
+            return ExecuteDml(command);
+        }
+
+        public bool IsValidCedulaPaciente(string cedula)
+        {
+            SqlCommand query = new SqlCommand("select Cedula from Pacientes where Cedula= '" + cedula+"'", _Connection);
+            
+            if (GetExecuteDmlValue(query) != "")
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public DataTable GetAllAviableMedicos()
+        {
+            SqlDataAdapter query = new SqlDataAdapter("SELECT Cedula, Nombre, Apellido, id From Medicos", _Connection);
+
+            return LoadData(query);
+        }
+
+        public DataTable GetAllAviableMedicosByCedula(string cedula)
+        {
+            SqlDataAdapter query = new SqlDataAdapter("SELECT Cedula, Nombre, Apellido, id From Medicos where Cedula = '" + cedula + "'", _Connection);
+
+            return LoadData(query);
+        }
+
+        public bool IsValidCedulaMedico(string cedula)
+        {
+            SqlCommand query = new SqlCommand("select Cedula from Medicos where Cedula = '" + cedula+"'", _Connection);
+
+
+            if (GetExecuteDmlValue(query) != "")
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         #endregion
 
         #region Acceso.coneccion
@@ -376,6 +494,24 @@ namespace DataBase
             catch (Exception e)
             {
                 return false;
+            }
+        }
+
+        public string GetExecuteDmlValue(SqlCommand query)
+        {
+            try
+            {
+                _Connection.Open();
+
+                string value = query.ExecuteScalar().ToString();
+
+                _Connection.Close();
+
+                return value;
+            }
+            catch (Exception e)
+            {
+                return "";
             }
         }
 

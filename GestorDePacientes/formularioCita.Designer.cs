@@ -49,6 +49,8 @@
             this.TxtCausa = new System.Windows.Forms.TextBox();
             this.txtNombrePaciente = new System.Windows.Forms.TextBox();
             this.txtNombreDoctor = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -72,6 +74,8 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel5, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel6, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel7, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.label1, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 2, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -207,6 +211,7 @@
             this.btnCrear.TabIndex = 0;
             this.btnCrear.Text = "Crear";
             this.btnCrear.UseVisualStyleBackColor = true;
+            this.btnCrear.Click += new System.EventHandler(this.btnCrear_Click);
             // 
             // lblFecha
             // 
@@ -285,6 +290,8 @@
             // txtNombrePaciente
             // 
             this.txtNombrePaciente.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtNombrePaciente.Enabled = false;
+            this.txtNombrePaciente.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.txtNombrePaciente.Location = new System.Drawing.Point(218, 3);
             this.txtNombrePaciente.Name = "txtNombrePaciente";
             this.txtNombrePaciente.ReadOnly = true;
@@ -294,11 +301,37 @@
             // txtNombreDoctor
             // 
             this.txtNombreDoctor.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtNombreDoctor.Enabled = false;
+            this.txtNombreDoctor.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.txtNombreDoctor.Location = new System.Drawing.Point(218, 3);
             this.txtNombreDoctor.Name = "txtNombreDoctor";
             this.txtNombreDoctor.ReadOnly = true;
             this.txtNombreDoctor.Size = new System.Drawing.Size(210, 20);
             this.txtNombreDoctor.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.label1.Location = new System.Drawing.Point(637, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(160, 9);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "YYYY-MM-DD";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.label2.Location = new System.Drawing.Point(637, 90);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(160, 9);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "HH:MM";
             // 
             // formularioCita
             // 
@@ -351,5 +384,7 @@
         private System.Windows.Forms.TextBox txtNombreDoctor;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.Button btnCrear;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
