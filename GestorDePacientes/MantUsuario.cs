@@ -198,14 +198,7 @@ namespace GestorDePacientes
                 MessageBox.Show("Debe ingresar un  Nombre de usuario");
                 isValid = false;
             }
-
-            /*
-            else if (invalidUser)
-            {
-                MessageBox.Show("El Usuario ingresado ya existe. Debe ingresar otro.");
-                isValid = false;
-            }
-            */
+            
             else if (TxtContrasena.Text == "Ingrese Contraseña" || TxtContrasena.Text ==""|| TxtContrasena.Text == "Ingrese Nueva Contraseña")
             {
                 MessageBox.Show("Debe ingresar una contraseña");
@@ -226,10 +219,7 @@ namespace GestorDePacientes
                 MessageBox.Show("Debe seleccionar un Rol");
                 isValid = false;
             }
-            //else if (emailSender.SendEmail(TxtCorreo.Text,"Se ha registrado en 'Gestor de Pacientes'",)
-           // {
-
-           // }
+           
             if (isValid)
             {
                 DataBase.Modelos.Usuario usuario = new DataBase.Modelos.Usuario(TxtNombre.Text, TxtApellido.Text,

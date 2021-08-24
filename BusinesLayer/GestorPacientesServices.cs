@@ -107,10 +107,22 @@ namespace BusinesLayer
             return repositorio.getValidDelectPaciente(idPaciente);
 
         }
-        public bool EliminarCita(int id)
+
+        public DataTable GetAllAviablePacientes()
         {
-            return repositorio.EliminarCita(id);
+            return repositorio.GetAllAviablePacientes();
         }
+
+        public DataTable GetAllAviablePacientesByCedula(string cedula)
+        {
+            return repositorio.GetAllAviablePacientesByCedula(cedula);
+        }
+
+        public bool IsValidCedulaPaciente(string cedula)
+        {
+            return repositorio.IsValidCedulaPaciente(cedula);
+        }
+        
         #endregion
 
         #region Puebas
@@ -163,30 +175,29 @@ namespace BusinesLayer
 
         
 
-        public DataTable GetAllResultado()
+        #region resultado
+         public DataTable GetAllResultado()
         {
             return repositorio.GetAllResultado();
         }
+        #endregion
 
+        #region Citas
         public DataTable GetAllCita()
         {
             return repositorio.GetAllCita();
         }
-
-        public DataTable GetAllAviablePacientes()
+        public bool EliminarCita(int id)
         {
-            return repositorio.GetAllAviablePacientes();
+            return repositorio.EliminarCita(id);
         }
-
-        public DataTable GetAllAviablePacientesByCedula(string cedula)
+        public bool getValidDelectCitas(int index)
         {
-            return repositorio.GetAllAviablePacientesByCedula(cedula);
+            return repositorio.getValidDelectCitas(index);
         }
+       #endregion
 
-        public bool IsValidCedulaPaciente(string cedula)
-        {
-            return repositorio.IsValidCedulaPaciente(cedula);
-        }
+        
 
         public DataTable GetAllAviableMedicos()
         {

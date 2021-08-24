@@ -1,4 +1,5 @@
 ﻿using BusinesLayer;
+using EmailHandler;
 using System;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -24,6 +25,8 @@ namespace GestorDePacientes
 
         public int Medicoid { get; set; }
 
+        private EmailSender emailSender;
+
         public MAntMedico()
         {
             InitializeComponent();
@@ -33,6 +36,10 @@ namespace GestorDePacientes
             SqlConnection connection = new SqlConnection(connectionString);
 
             services = new GestorPacientesServices(connection);
+
+            emailSender = new EmailSender();
+
+
             _filename = "";
             index=0;
             Medicoid = 0;
@@ -189,7 +196,7 @@ namespace GestorDePacientes
             {
                 //SavePhoto();
                 DataBase.Modelos.Medico medico = new DataBase.Modelos.Medico(TxtNombre.Text, TxtApellido.Text,
-                    TxtCorreo.Text, TxtTelefono.Text, TxtCedula.Text,  TxtTelefono.Text);
+                TxtCorreo.Text, TxtTelefono.Text, TxtCedula.Text,  TxtTelefono.Text);
                 //se repite Txttelefono.Text para evitar el error, en su lugar debe ir el string "foto"
 
                 if (Medicoid > 0)
@@ -199,7 +206,14 @@ namespace GestorDePacientes
                 }
                 else
                 {
+                    string cuerpo = "Se ha agregado como Medico en " +
+                           "'Gestor de Pacientes' a " + medico.Nombre + " " + medico.Apellido;
+                           
+
                     services.AgregarMedico(medico);
+
+                    emailSender.SendEmail(TxtCorreo.Text, "Se ha registrado en 'Gestor de Pacientes'", cuerpo);
+
                 }
                 Dgv.Instancia.LoadData();
                 Dgv.Instancia.Show();

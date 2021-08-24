@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.DgvResultadoCC = new System.Windows.Forms.DataGridView();
             this.btnCerrar = new System.Windows.Forms.Button();
+            this.DgvResultadoCC = new System.Windows.Forms.DataGridView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.atrasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvResultadoCC)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -55,15 +55,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(606, 288);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // DgvResultadoCC
-            // 
-            this.DgvResultadoCC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvResultadoCC.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DgvResultadoCC.Location = new System.Drawing.Point(3, 31);
-            this.DgvResultadoCC.Name = "DgvResultadoCC";
-            this.DgvResultadoCC.Size = new System.Drawing.Size(600, 217);
-            this.DgvResultadoCC.TabIndex = 0;
-            // 
             // btnCerrar
             // 
             this.btnCerrar.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -75,6 +66,15 @@
             this.btnCerrar.UseVisualStyleBackColor = true;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
+            // DgvResultadoCC
+            // 
+            this.DgvResultadoCC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvResultadoCC.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DgvResultadoCC.Location = new System.Drawing.Point(3, 31);
+            this.DgvResultadoCC.Name = "DgvResultadoCC";
+            this.DgvResultadoCC.Size = new System.Drawing.Size(600, 217);
+            this.DgvResultadoCC.TabIndex = 0;
+            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -85,6 +85,13 @@
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
+            // atrasToolStripMenuItem
+            // 
+            this.atrasToolStripMenuItem.Name = "atrasToolStripMenuItem";
+            this.atrasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.atrasToolStripMenuItem.Text = "Atras";
+            this.atrasToolStripMenuItem.Click += new System.EventHandler(this.atrasToolStripMenuItem_Click);
+            // 
             // menuToolStripMenuItem
             // 
             this.menuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -92,13 +99,7 @@
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.menuToolStripMenuItem.Text = "Menu";
-            // 
-            // atrasToolStripMenuItem
-            // 
-            this.atrasToolStripMenuItem.Name = "atrasToolStripMenuItem";
-            this.atrasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.atrasToolStripMenuItem.Text = "Atras";
-            this.atrasToolStripMenuItem.Click += new System.EventHandler(this.atrasToolStripMenuItem_Click);
+            this.menuToolStripMenuItem.Visible = false;
             // 
             // FomCitaCompletada
             // 

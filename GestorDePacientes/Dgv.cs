@@ -225,26 +225,31 @@ namespace GestorDePacientes
                     MessageBox.Show("Este Paciente No se puede eliminar. porque tiene citas" +
                                            " o resultados pendientes.", "Bad News");
                 }
-                
-                   
+                                   
             }
             else if (MenuHome.Instancia.TipoMant == "Cita")
             {
-
-                DialogResult response = MessageBox.Show("Esta seguro de eliminar esta " +
-               "Cita?", "Advertencia", MessageBoxButtons.OKCancel);
-                if (response == DialogResult.OK)
+                if (services.getValidDelectCitas(index))
                 {
-                    bool result = services.EliminarCita(index);
+                    DialogResult response = MessageBox.Show("Esta seguro de eliminar esta " +
+                    "Cita?", "Advertencia", MessageBoxButtons.OKCancel);
+                    if (response == DialogResult.OK)
+                    {
+                        bool result = services.EliminarCita(index);
 
-                    if (result)
-                    {
-                        MessageBox.Show("Se elimino con exito!!", "succes");
+                        if (result)
+                        {
+                            MessageBox.Show("Se elimino con exito!!", "succes");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Se produjo un error.", "Bad News");
+                        }
                     }
-                    else
-                    {
-                        MessageBox.Show("Se produjo un error.", "Bad News");
-                    }
+                }
+                else
+                {
+                    MessageBox.Show("Esta Cita No se puede eliminar", "Bad News");
                 }
 
             }

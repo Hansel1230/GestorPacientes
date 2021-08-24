@@ -28,22 +28,22 @@ namespace DataBase
                 " where Nombre_Usuario=@nombre_user and Contrasena=@contrasena", _Connection);
 
 
-            
+
             command.Parameters.AddWithValue("@nombre_user", user.NombreUser);
             command.Parameters.AddWithValue("@contrasena", user.Contrasena);
 
             SqlDataReader reader = command.ExecuteReader();
 
             Usuario usuario = new Usuario();
-            while(reader.Read())
+            while (reader.Read())
             {
-                usuario.id = reader.IsDBNull(0)?0:reader.GetInt32(0);
+                usuario.id = reader.IsDBNull(0) ? 0 : reader.GetInt32(0);
                 usuario.Nombre = reader.IsDBNull(1) ? "" : reader.GetString(1);
-                usuario.Apellido= reader.IsDBNull(2) ? "" : reader.GetString(2);
+                usuario.Apellido = reader.IsDBNull(2) ? "" : reader.GetString(2);
                 usuario.Correo = reader.IsDBNull(3) ? "" : reader.GetString(3);
                 usuario.NombreUser = reader.IsDBNull(4) ? "" : reader.GetString(4);
                 usuario.Contrasena = reader.IsDBNull(5) ? "" : reader.GetString(5);
-                usuario.TipoUser = reader.IsDBNull(6) ? 0 : reader.GetInt32(6);        
+                usuario.TipoUser = reader.IsDBNull(6) ? 0 : reader.GetInt32(6);
             }
 
             reader.Close();
@@ -53,7 +53,7 @@ namespace DataBase
         }
 
         #endregion
-        
+
         #region Mant.bbdd.Usuario
 
         //Usuarios
@@ -70,10 +70,10 @@ namespace DataBase
             command.Parameters.AddWithValue("@contrasena", item.Contrasena);
             command.Parameters.AddWithValue("@tipo_user", item.TipoUser);
 
-            return ExecuteDml(command); 
+            return ExecuteDml(command);
         }
 
-        public bool EditarUsuario(Usuario item,int idUsuario)
+        public bool EditarUsuario(Usuario item, int idUsuario)
         {
             SqlCommand command = new SqlCommand("update Usuarios set Nombre=@nombre,Apellido=@apellido,Correo=@correo," +
                 "Nombre_Usuario=@nombre_user,Contrasena=@contrasena,Tipo_Usuario=@tipo_user where id=@id", _Connection);
@@ -93,7 +93,7 @@ namespace DataBase
         {
             SqlCommand command = new SqlCommand("delete Usuarios where id=@id", _Connection);
 
-            command.Parameters.AddWithValue("@id",id);
+            command.Parameters.AddWithValue("@id", id);
 
             return ExecuteDml(command);
         }
@@ -111,7 +111,7 @@ namespace DataBase
             }
 
             return false;
-        } 
+        }
         #endregion
 
         #region Mant.bbdd.Medicos
@@ -152,7 +152,7 @@ namespace DataBase
         {
             SqlCommand command = new SqlCommand("delete Medicos where id=@id", _Connection);
 
-            command.Parameters.AddWithValue("@id",id);
+            command.Parameters.AddWithValue("@id", id);
 
             return ExecuteDml(command);
         }
@@ -220,7 +220,7 @@ namespace DataBase
             SqlCommand command = new SqlCommand("insert into Pruebas_Laboratorio(Nombre) values (@nombre)", _Connection);
 
             command.Parameters.AddWithValue("@nombre", item.Nombre);
-            
+
             return ExecuteDml(command);
         }
 
@@ -245,10 +245,10 @@ namespace DataBase
 
         public bool UpdateResultado(int idResultado, string Resultado)
         {
-            
+
             SqlCommand command = new SqlCommand("UPDATE Resultados_Laboratorio SET " +
             "Resultado_Prueva=@resultado,Estado_Resultado=1 WHERE id=@id;", _Connection);
-            
+
             command.Parameters.AddWithValue("@resultado", Resultado);
             command.Parameters.AddWithValue("@id", idResultado);
 
@@ -324,7 +324,7 @@ namespace DataBase
         {
             //SqlDataAdapter query = new SqlDataAdapter("Select * from Usuarios", _Connection);
             SqlDataAdapter query = new SqlDataAdapter("select id,Nombre,Apellido,Correo,Nombre_Usuario," +
-            "CASE WHEN Tipo_Usuario = 1 THEN 'Administrador' ELSE 'Medico' END AS 'Tipo de Usuario' from Usuarios" , _Connection);
+            "CASE WHEN Tipo_Usuario = 1 THEN 'Administrador' ELSE 'Medico' END AS 'Tipo de Usuario' from Usuarios", _Connection);
 
             return LoadData(query);
         }
@@ -340,8 +340,8 @@ namespace DataBase
         public DataTable GetAllPaciente()
         {
             SqlDataAdapter query = new SqlDataAdapter("select id,Nombre,Apellido,Telefono,Direccion,Cedula," +
-                "Fecha_Nacimiento as 'Fecha de nacimiento'," +                
-                "CASE WHEN Fumador = 1 THEN 'Si' ELSE 'No' END AS Fumador, Alergias,Foto "  +
+                "Fecha_Nacimiento as 'Fecha de nacimiento'," +
+                "CASE WHEN Fumador = 1 THEN 'Si' ELSE 'No' END AS Fumador, Alergias,Foto " +
                 "from Pacientes", _Connection);
 
             return LoadData(query);
@@ -375,7 +375,7 @@ namespace DataBase
                 "FROM Resultados_Laboratorio " +
                 "join Pacientes on Pacientes.id=Resultados_Laboratorio.idPaciente " +
                 "join Pruebas_Laboratorio on Resultados_Laboratorio.idPrueva_Laboriatorio=Pruebas_Laboratorio.id " +
-                "where Resultados_Laboratorio.Estado_Resultado = 0 and Pacientes.Cedula = '" + cedula+"'", _Connection);
+                "where Resultados_Laboratorio.Estado_Resultado = 0 and Pacientes.Cedula = '" + cedula + "'", _Connection);
 
             return LoadData(query);
         }
@@ -411,14 +411,14 @@ namespace DataBase
 
         public DataTable GetAllAviablePacientesByCedula(string cedula)
         {
-            SqlDataAdapter query = new SqlDataAdapter("SELECT Cedula, Nombre, Apellido, id From Pacientes where Cedula = '" + cedula+"'", _Connection);
+            SqlDataAdapter query = new SqlDataAdapter("SELECT Cedula, Nombre, Apellido, id From Pacientes where Cedula = '" + cedula + "'", _Connection);
 
             return LoadData(query);
         }
 
         public string GetIdPacienteCita(int idcita)
         {
-            SqlCommand query = new SqlCommand("select idPaciente from Citas where id = '"+idcita+"'" , _Connection);
+            SqlCommand query = new SqlCommand("select idPaciente from Citas where id = '" + idcita + "'", _Connection);
             string value = GetExecuteDmlValue(query);
             return value;
         }
@@ -430,7 +430,7 @@ namespace DataBase
             return value;
         }
 
-        public bool CambiarEstadoCita(int estado,int idcita)
+        public bool CambiarEstadoCita(int estado, int idcita)
         {
             SqlCommand command = new SqlCommand("update Citas set Estado_Cita=@estado where id=@id", _Connection);
 
@@ -451,8 +451,8 @@ namespace DataBase
 
         public bool IsValidCedulaPaciente(string cedula)
         {
-            SqlCommand query = new SqlCommand("select Cedula from Pacientes where Cedula= '" + cedula+"'", _Connection);
-            
+            SqlCommand query = new SqlCommand("select Cedula from Pacientes where Cedula= '" + cedula + "'", _Connection);
+
             if (GetExecuteDmlValue(query) != "")
             {
                 return true;
@@ -477,7 +477,7 @@ namespace DataBase
 
         public bool IsValidCedulaMedico(string cedula)
         {
-            SqlCommand query = new SqlCommand("select Cedula from Medicos where Cedula = '" + cedula+"'", _Connection);
+            SqlCommand query = new SqlCommand("select Cedula from Medicos where Cedula = '" + cedula + "'", _Connection);
 
 
             if (GetExecuteDmlValue(query) != "")
@@ -536,7 +536,8 @@ namespace DataBase
                 query.Fill(data);
                 _Connection.Close();
                 return data;
-            }catch (Exception e)
+            }
+            catch (Exception e)
             {
                 return null;
             }
@@ -549,7 +550,7 @@ namespace DataBase
         public bool SavePhoto(int id, string destination)
         {
 
-            SqlCommand command = new SqlCommand("update Personas set FotoPerfil=@foto where Id = @id",_Connection);
+            SqlCommand command = new SqlCommand("update Personas set FotoPerfil=@foto where Id = @id", _Connection);
 
             command.Parameters.AddWithValue("@id", id);
             command.Parameters.AddWithValue("@foto", destination);
@@ -609,11 +610,11 @@ namespace DataBase
         }
 
         public bool getValidDelectMedico(int idMedico)
-        {          
+        {
             SqlDataAdapter get_resultado = new SqlDataAdapter("select Estado_Resultado from Resultados_Laboratorio" +
                  " where Estado_Resultado=0 and idDoctor=" + idMedico, _Connection);
 
-            int valorLaboratorio =Convert.ToInt32(LoadData(get_resultado).Rows.Count);
+            int valorLaboratorio = Convert.ToInt32(LoadData(get_resultado).Rows.Count);
 
             SqlDataAdapter get_cita = new SqlDataAdapter("select Estado_Cita from Citas" +
                  " where Estado_Cita=0 and idDoctor=" + idMedico, _Connection);
@@ -622,7 +623,7 @@ namespace DataBase
             int valorCita = Convert.ToInt32(LoadData(get_cita).Rows.Count);
 
 
-            if (valorLaboratorio >0 || valorCita > 0)
+            if (valorLaboratorio > 0 || valorCita > 0)
             {
                 return false;
 
@@ -632,7 +633,7 @@ namespace DataBase
         }
 
         public bool getValidDelectPrueba(int idPrueba)
-        {         
+        {
             SqlDataAdapter resultado = new SqlDataAdapter("select * from Resultados_Laboratorio" +
                 " where idPrueva_Laboriatorio=" + idPrueba, _Connection);
 
@@ -642,11 +643,24 @@ namespace DataBase
             {
                 return true;
             }
-            
+
             return false;
         }
 
-        
-        #endregion
+        public bool getValidDelectCitas(int index)
+        {
+            SqlDataAdapter citas = new SqlDataAdapter("select Estado_Cita from Citas" +
+                " where id="+index, _Connection);
+
+            int cant = LoadData(citas).Rows.Count;
+
+            if (cant == 0)
+            {
+                return false;
+            }
+
+            return false;
+        }
     }
+    #endregion
 }
