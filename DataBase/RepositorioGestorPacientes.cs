@@ -242,6 +242,18 @@ namespace DataBase
 
             return ExecuteDml(command);
         }
+
+        public bool UpdateResultado(int idResultado, string Resultado)
+        {
+            
+            SqlCommand command = new SqlCommand("UPDATE Resultados_Laboratorio SET " +
+            "Resultado_Prueva=@resultado,Estado_Resultado=1 WHERE id=@id;", _Connection);
+            
+            command.Parameters.AddWithValue("@resultado", Resultado);
+            command.Parameters.AddWithValue("@id", idResultado);
+
+            return ExecuteDml(command);
+        }
         #endregion
 
         #region Resultados

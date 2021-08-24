@@ -4,6 +4,7 @@ using System;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using EmailHandler;
 
 namespace GestorDePacientes
 {
@@ -19,6 +20,8 @@ namespace GestorDePacientes
         bool isValid;
         public int Usuarioid { get; set; } = 0;
         public int tipoUser { get; set; }
+
+        private EmailSender emailSender;
         #endregion
 
         public MantUsuario()
@@ -30,6 +33,8 @@ namespace GestorDePacientes
             SqlConnection connection = new SqlConnection(connectionString);
 
             services = new GestorPacientesServices(connection);
+
+            emailSender = new EmailSender();
 
         }
 
@@ -215,13 +220,16 @@ namespace GestorDePacientes
             {
                 MessageBox.Show("Debe ingresar una misma contraseña en ambos campos");
                 isValid = false;
-           }
+            }
             else if (CbxRol.SelectedIndex == 0)
             {
                 MessageBox.Show("Debe seleccionar un Rol");
                 isValid = false;
             }
-           
+            //else if (emailSender.SendEmail(TxtCorreo.Text,"Se ha registrado en 'Gestor de Pacientes'",)
+           // {
+
+           // }
             if (isValid)
             {
                 DataBase.Modelos.Usuario usuario = new DataBase.Modelos.Usuario(TxtNombre.Text, TxtApellido.Text,
@@ -234,7 +242,12 @@ namespace GestorDePacientes
                 }               
                 else
                 {
+                    string cuerpo ="Se ha agregado como usuario en " +
+                        "'Gestor de Pacientes' a "+usuario.Nombre+" "+usuario.Apellido+
+                        " y su Nombre de usuario es"+usuario.NombreUser;
+
                     services.AgregarUsuario(usuario);
+                    emailSender.SendEmail(TxtCorreo.Text, "Se ha registrado en 'Gestor de Pacientes'", cuerpo);
                 }
                 Dgv.Instancia.LoadData();
                 Dgv.Instancia.Show();
@@ -283,7 +296,5 @@ namespace GestorDePacientes
         }
 
         #endregion
-
-
     }
 }

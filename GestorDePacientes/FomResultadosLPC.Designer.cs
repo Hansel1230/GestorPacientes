@@ -39,8 +39,8 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.08913F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.91087F));
             this.tableLayoutPanel1.Controls.Add(this.DgvResultLPC, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnCompletar, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnCerrar, 1, 1);
@@ -55,10 +55,11 @@
             // DgvResultLPC
             // 
             this.DgvResultLPC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tableLayoutPanel1.SetColumnSpan(this.DgvResultLPC, 2);
             this.DgvResultLPC.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DgvResultLPC.Location = new System.Drawing.Point(3, 3);
             this.DgvResultLPC.Name = "DgvResultLPC";
-            this.DgvResultLPC.Size = new System.Drawing.Size(274, 260);
+            this.DgvResultLPC.Size = new System.Drawing.Size(555, 260);
             this.DgvResultLPC.TabIndex = 0;
             // 
             // btnCompletar
@@ -66,7 +67,7 @@
             this.btnCompletar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnCompletar.Location = new System.Drawing.Point(3, 269);
             this.btnCompletar.Name = "btnCompletar";
-            this.btnCompletar.Size = new System.Drawing.Size(274, 83);
+            this.btnCompletar.Size = new System.Drawing.Size(275, 83);
             this.btnCompletar.TabIndex = 1;
             this.btnCompletar.Text = "Completar cita";
             this.btnCompletar.UseVisualStyleBackColor = true;
@@ -75,9 +76,9 @@
             // btnCerrar
             // 
             this.btnCerrar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCerrar.Location = new System.Drawing.Point(283, 269);
+            this.btnCerrar.Location = new System.Drawing.Point(284, 269);
             this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(275, 83);
+            this.btnCerrar.Size = new System.Drawing.Size(274, 83);
             this.btnCerrar.TabIndex = 2;
             this.btnCerrar.Text = "Cerrar resultados";
             this.btnCerrar.UseVisualStyleBackColor = true;

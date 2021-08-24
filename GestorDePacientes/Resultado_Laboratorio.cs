@@ -66,6 +66,7 @@ namespace GestorDePacientes
             index = Convert.ToInt32(Filaceleccionada.Cells[0].Value.ToString());
             BtnReportar.Visible = true;
             BtnDeselect.Visible = true;
+            Completarprueba.Instancia.id = index;
         }
         private void TxtFiltrar_Click(object sender, EventArgs e)
         {
@@ -93,6 +94,12 @@ namespace GestorDePacientes
             {
                 MessageBox.Show("Primero debe seleccionar!!");
             }
+            else
+            {                
+                Completarprueba.Instancia.Show();
+                Instancia.Hide();
+                deselect();
+            }                       
         }
 
         private void BtnDeselect_Click(object sender, EventArgs e)
@@ -102,7 +109,6 @@ namespace GestorDePacientes
         #endregion
 
         #region Metodos
-
         public void LoadData()
         {
             DgvResultados.DataSource = services.GetAllResultado();
@@ -148,6 +154,11 @@ namespace GestorDePacientes
         }
 
         private void BtnCrearCita_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DgvResultados_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

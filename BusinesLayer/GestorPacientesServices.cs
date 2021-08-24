@@ -140,11 +140,16 @@ namespace BusinesLayer
         {
             return repositorio.getValidDelectPrueba(idprueba);
         }
-        #endregion
 
-        #region Foto
+        public bool UpdateResultado(int idPrueba, string Resultado)
+        {
+            return repositorio.UpdateResultado(idPrueba, Resultado);
+        }
+            #endregion
 
-        public bool SavePhoto(int id, string destination)
+            #region Foto
+
+            public bool SavePhoto(int id, string destination)
         {
             return repositorio.SavePhoto(id, destination);
         }

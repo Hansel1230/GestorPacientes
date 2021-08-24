@@ -34,7 +34,7 @@
             this.atrasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.LblResultado = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.TxtResultado = new System.Windows.Forms.TextBox();
             this.BtnFinalizar = new System.Windows.Forms.Button();
             this.LblCompletar = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
@@ -87,6 +87,7 @@
             this.atrasToolStripMenuItem.Name = "atrasToolStripMenuItem";
             this.atrasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.atrasToolStripMenuItem.Text = "Atras";
+            this.atrasToolStripMenuItem.Click += new System.EventHandler(this.atrasToolStripMenuItem_Click);
             // 
             // tableLayoutPanel2
             // 
@@ -94,7 +95,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.LblResultado, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.textBox1, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.TxtResultado, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(9, 85);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -115,14 +116,16 @@
             this.LblResultado.Text = "Resultado";
             this.LblResultado.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // textBox1
+            // TxtResultado
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(225, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(216, 21);
-            this.textBox1.TabIndex = 1;
+            this.TxtResultado.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TxtResultado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtResultado.Location = new System.Drawing.Point(225, 3);
+            this.TxtResultado.Name = "TxtResultado";
+            this.TxtResultado.Size = new System.Drawing.Size(216, 21);
+            this.TxtResultado.TabIndex = 1;
+            this.TxtResultado.Click += new System.EventHandler(this.TxtResultado_Click);
+            this.TxtResultado.Leave += new System.EventHandler(this.TxtResultado_Leave);
             // 
             // BtnFinalizar
             // 
@@ -133,6 +136,7 @@
             this.BtnFinalizar.TabIndex = 2;
             this.BtnFinalizar.Text = "Finalizar";
             this.BtnFinalizar.UseVisualStyleBackColor = true;
+            this.BtnFinalizar.Click += new System.EventHandler(this.BtnFinalizar_Click);
             // 
             // LblCompletar
             // 
@@ -175,7 +179,7 @@
         private System.Windows.Forms.ToolStripMenuItem atrasToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label LblResultado;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox TxtResultado;
         private System.Windows.Forms.Button BtnFinalizar;
         private System.Windows.Forms.Label LblCompletar;
     }

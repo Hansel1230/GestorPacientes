@@ -53,6 +53,7 @@ namespace GestorDePacientes
         {
             MenuHome.Instancia.Show();
             Instancia.Hide();
+            deselect();
         }
 
         private void BtnAgregar_Click(object sender, EventArgs e)
@@ -114,6 +115,7 @@ namespace GestorDePacientes
         public void deselect()
         {
             Filaceleccionada = null;
+            BtnEditar.Text = "Editar";
             BtnEditar.Visible = false;
             BtnEliminar.Visible = false;
             BtnDeselect.Visible = false;

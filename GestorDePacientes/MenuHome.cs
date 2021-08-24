@@ -111,6 +111,7 @@ namespace GestorDePacientes
             if (HomeValid == 0)
             {
                 TipoMant = "Cita";
+                Dgv.Instancia.LoadData();
                 Dgv.Instancia.Show();
                 Instancia.Hide();
                 

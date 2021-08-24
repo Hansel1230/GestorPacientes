@@ -44,5 +44,10 @@ namespace GestorDePacientes
             idCita = idcita;
             DgvResultadoCC.DataSource = services.GetAllResultadoLPC(idcita);
         }
+
+        private void atrasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

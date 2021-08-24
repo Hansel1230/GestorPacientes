@@ -192,6 +192,7 @@
             this.DgvResultados.Size = new System.Drawing.Size(857, 306);
             this.DgvResultados.TabIndex = 0;
             this.DgvResultados.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvResultados_CellClick);
+            this.DgvResultados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvResultados_CellContentClick);
             // 
             // tableLayoutPanel3
             // 
