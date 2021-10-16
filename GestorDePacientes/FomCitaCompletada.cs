@@ -49,5 +49,10 @@ namespace GestorDePacientes
         {
 
         }
+
+        private void FomCitaCompletada_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

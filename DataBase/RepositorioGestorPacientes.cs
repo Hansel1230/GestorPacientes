@@ -401,7 +401,6 @@ namespace DataBase
             return LoadData(query);
         }
 
-
         public DataTable GetAllAviablePacientes()
         {
             SqlDataAdapter query = new SqlDataAdapter("SELECT Cedula, Nombre, Apellido, id From Pacientes", _Connection);
@@ -661,6 +660,7 @@ namespace DataBase
 
             return false;
         }
+
+        #endregion
     }
-    #endregion
 }

@@ -32,8 +32,8 @@
             this.btnCerrar = new System.Windows.Forms.Button();
             this.DgvResultadoCC = new System.Windows.Forms.DataGridView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.atrasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.atrasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvResultadoCC)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -85,13 +85,6 @@
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // atrasToolStripMenuItem
-            // 
-            this.atrasToolStripMenuItem.Name = "atrasToolStripMenuItem";
-            this.atrasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.atrasToolStripMenuItem.Text = "Atras";
-            this.atrasToolStripMenuItem.Click += new System.EventHandler(this.atrasToolStripMenuItem_Click);
-            // 
             // menuToolStripMenuItem
             // 
             this.menuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -100,6 +93,13 @@
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.menuToolStripMenuItem.Text = "Menu";
             this.menuToolStripMenuItem.Visible = false;
+            // 
+            // atrasToolStripMenuItem
+            // 
+            this.atrasToolStripMenuItem.Name = "atrasToolStripMenuItem";
+            this.atrasToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
+            this.atrasToolStripMenuItem.Text = "Atras";
+            this.atrasToolStripMenuItem.Click += new System.EventHandler(this.atrasToolStripMenuItem_Click);
             // 
             // FomCitaCompletada
             // 
@@ -110,6 +110,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FomCitaCompletada";
             this.Text = "FomCitaCompletada";
+            this.Load += new System.EventHandler(this.FomCitaCompletada_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvResultadoCC)).EndInit();
